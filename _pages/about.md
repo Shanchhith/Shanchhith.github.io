@@ -23,9 +23,11 @@ Hi there! I’m currently a PreDoc Research Assistant at the Centre for Manageme
 
 
 **Awards and Honors**
-I’m also a **Don Lavoie Fellow** in public policy at Mercatus Centre. 🏅 
+
+I’m also a **Don Lavoie Fellow** in public policy at Mercatus Centre.
 
 
 **Hobbies and Interests**
-When I’m not working, I love reading non-fiction and historical books. 📖 One of my favorite quotes that keeps me motivated is:
+
+When I’m not working, I love reading non-fiction and historical books.  One of my favorite quotes that keeps me motivated is:
 *"If you can't fly then run, if you can't run then walk, if you can't walk then crawl, but whatever you do you have to keep moving forward."* – Martin Luther King Jr.
