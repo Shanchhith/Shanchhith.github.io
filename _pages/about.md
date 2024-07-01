@@ -18,8 +18,8 @@ Hi there! I’m currently a PreDoc Research Assistant at the Centre for Manageme
 
 
 **Current Projects**
-- 🔧 **Tata Electronics Project**: Teaming up with Prof. Tarun and Prof. Pritha on a project with Tata Electronics.
-- 🌐 **Social Media Enhancement**: Collaborating with Prof. Anuj and Prof. Joonhyuk Yang to boost a company’s social media reach and user experience.
+- 🔧 **Tata Electronics Project**: Working with Prof. Tarun and Prof. Pritha on a project with Tata Electronics.
+- 🌐 **Social Media Enhancement**: Working with Prof. Anuj and Prof. Joonhyuk Yang to boost a company’s social media reach and user experience.
 
 
 **Awards and Honors**
