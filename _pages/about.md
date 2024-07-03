@@ -11,15 +11,15 @@ Hi there! I’m currently a PreDoc Research Assistant at the Centre for Manageme
 
 
 **Research Interests**
-- 🔍 Applied Microeconomics: Less Maths and More Data.
-- 📊 Quantitative Economics: Using stats to make sense of economic data and predict trends.
-- 📜 Historical Economics: Looking at economic stuff through a historical lens.
-- 🏥 Health Economics: Digging into the economics of health and healthcare.
+- Applied Microeconomics: Less Maths and More Data.
+- Quantitative Economics: Using stats to make sense of economic data and predict trends.
+- Historical Economics: Looking at economic stuff through a historical lens.
+- Health Economics: Digging into the economics of health and healthcare.
 
 
 **Current Projects**
-- 🔧 **Tata Electronics Project**: Working with Prof. Tarun and Prof. Pritha on a project with Tata Electronics.
-- 🌐 **Social Media Enhancement**: Working with Prof. Anuj and Prof. Joonhyuk Yang to boost a company’s social media reach and user experience.
+-  **Tata Electronics Project**: Working with Prof. Tarun and Prof. Pritha on a project with Tata Electronics.
+-  **Social Media Enhancement**: Working with Prof. Anuj and Prof. Joonhyuk Yang to boost a company’s social media reach and user experience.
 
 
 **Awards and Honors**
