@@ -4,709 +4,421 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shanchhith Singh Nayak</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/jpeg" href="IMG_8828.JPG">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,300;0,400;0,700;1,300&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --cream:#faf8f4;
-  --cream2:#f2efe9;
-  --cream3:#e8e3da;
-  --ink:#1c1917;
-  --ink2:#57534e;
-  --ink3:#a8a29e;
-  --gold:#8b6914;
-  --gold-light:#c9a84c;
-  --gold-pale:#f5ecd4;
-  --rule:#ddd8d0;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
-  --mono:'DM Mono',monospace;
+  --bg:#050508;--bg2:#0a0a0f;--bg3:#0f0f18;--panel:#111118;
+  --border:#1a1a2e;--border2:#252540;
+  --green:#00ff41;--green2:#00cc33;--green3:rgba(0,255,65,.12);
+  --cyan:#00d4ff;--cyan2:rgba(0,212,255,.15);
+  --purple:#9d4edd;--red:#ff4444;--yellow:#ffcc00;
+  --fg:#e0e0e0;--fg2:#888899;--fg3:#444455;
+  --mono:'JetBrains Mono',monospace;--mono2:'Share Tech Mono',monospace;
 }
-
-html{font-size:16px;scroll-behavior:smooth}
-body{background:var(--cream);color:var(--ink);font-family:var(--sans);overflow-x:hidden;cursor:none}
-
-/* ── Cursor ── */
-#cur{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s}
-#cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(139,105,20,.25);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .14s ease-out}
-body.cur-grow #cur{width:14px;height:14px;background:var(--gold-light)}
-body.cur-grow #cur-r{width:48px;height:48px;border-color:rgba(139,105,20,.5)}
-
-/* ── Progress bar ── */
-#progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:600;width:0%;transition:width .1s linear}
-
-/* ── Nav ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  padding:1.5rem 4rem;
-  display:flex;justify-content:space-between;align-items:center;
-  transition:background .4s,backdrop-filter .4s,border-color .4s;
-  border-bottom:1px solid transparent;
-}
-nav.scrolled{background:rgba(250,248,244,.92);backdrop-filter:blur(16px);border-color:var(--rule)}
-.nav-name{font-family:var(--serif);font-size:1.1rem;font-weight:300;letter-spacing:.02em;color:var(--ink);text-decoration:none}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:.68rem;color:var(--ink3);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
-.nav-links a:hover{color:var(--gold)}
-.nav-links a:hover::after{width:100%}
-
-/* ── Hero ── */
-#hero{
-  min-height:100vh;display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  padding:8rem 4rem 4rem;
-  position:relative;overflow:hidden;
-  gap:4rem;
-}
-
-/* Subtle background texture */
-#hero::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 100% 0%,rgba(201,168,76,.08) 0%,transparent 60%),
-    radial-gradient(ellipse 60% 80% at 0% 100%,rgba(139,105,20,.05) 0%,transparent 50%);
-  pointer-events:none;
-}
-
-.hero-left{position:relative;z-index:2}
-
-.hero-eyebrow{
-  font-family:var(--mono);font-size:.68rem;color:var(--gold);
-  letter-spacing:.2em;text-transform:uppercase;
-  display:flex;align-items:center;gap:.75rem;margin-bottom:2rem;
-  opacity:0;animation:fadeUp .9s .1s both;
-}
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
-
-.hero-name{
-  font-family:var(--serif);font-size:clamp(3rem,5.5vw,5.5rem);
-  font-weight:300;line-height:1;letter-spacing:-.01em;
-  margin-bottom:1rem;
-  opacity:0;animation:fadeUp .9s .25s both;
-}
-.hero-name em{font-style:italic;color:var(--gold)}
-
-.hero-title{
-  font-family:var(--serif);font-size:clamp(1rem,2vw,1.4rem);
-  font-weight:300;font-style:italic;color:var(--ink2);
-  margin-bottom:2rem;line-height:1.4;
-  opacity:0;animation:fadeUp .9s .4s both;
-}
-
-.hero-desc{
-  font-size:.92rem;color:var(--ink2);line-height:1.8;
-  max-width:460px;margin-bottom:2.5rem;
-  opacity:0;animation:fadeUp .9s .55s both;
-}
-
-.hero-ctas{
-  display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;
-  opacity:0;animation:fadeUp .9s .7s both;
-}
-
-.btn{
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:.75rem 1.5rem;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;
-}
-.btn-solid{background:var(--ink);color:var(--cream);border:1px solid var(--ink)}
-.btn-solid:hover{background:var(--gold);border-color:var(--gold)}
-.btn-outline{background:transparent;color:var(--ink2);border:1px solid var(--rule)}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-
-/* Social row */
-.hero-socials{
-  display:flex;gap:1.5rem;align-items:center;
-  opacity:0;animation:fadeUp .9s .85s both;
-}
-.social-link{
-  font-family:var(--mono);font-size:.65rem;color:var(--ink3);text-decoration:none;
-  letter-spacing:.08em;text-transform:uppercase;
-  display:flex;align-items:center;gap:.4rem;transition:color .2s;
-}
-.social-link:hover{color:var(--gold)}
-.social-link svg{width:13px;height:13px;fill:currentColor}
-
-/* Hero right — photo + stats */
-.hero-right{
-  position:relative;z-index:2;display:flex;flex-direction:column;
-  align-items:flex-end;gap:2rem;
-  opacity:0;animation:fadeUp .9s .4s both;
-}
-
-.photo-frame{
-  width:min(340px,100%);aspect-ratio:3/4;
-  position:relative;overflow:hidden;
-  background:var(--cream2);
-  border:1px solid var(--rule);
-}
-.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(15%)}
-.photo-placeholder{
-  width:100%;height:100%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:.75rem;
-  background:linear-gradient(135deg,var(--cream2) 0%,var(--cream3) 100%);
-}
-.photo-placeholder .initials{
-  font-family:var(--serif);font-size:5rem;font-weight:300;color:var(--ink3);line-height:1
-}
-.photo-placeholder .ph-label{font-family:var(--mono);font-size:.65rem;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase}
-
-/* Gold corner accent */
-.photo-frame::after{
-  content:'';position:absolute;bottom:0;right:0;
-  width:40px;height:40px;
-  border-bottom:2px solid var(--gold);
-  border-right:2px solid var(--gold);
-}
-
-.stats-mini{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;width:min(340px,100%)}
-.stat-card{
-  background:var(--cream2);border:1px solid var(--rule);
-  padding:.9rem 1rem;transition:border-color .2s;
-}
-.stat-card:hover{border-color:var(--gold-light)}
-.stat-card .sn{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--gold);line-height:1}
-.stat-card .sl{font-family:var(--mono);font-size:.58rem;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:.25rem}
-
-/* ── Sections ── */
-.section{padding:7rem 4rem;border-top:1px solid var(--rule)}
-.section-inner{max-width:1100px;margin:0 auto}
-
-.sec-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:4rem}
-.sec-num{font-family:var(--mono);font-size:.65rem;color:var(--ink3);letter-spacing:.12em}
-.sec-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300}
-.sec-title em{font-style:italic;color:var(--gold)}
-.sec-line{flex:1;height:1px;background:var(--rule);margin-left:.5rem;margin-bottom:.35rem}
-
-/* ── About ── */
-#about{background:var(--cream)}
-.about-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:6rem;align-items:start}
-.about-body p{color:var(--ink2);line-height:1.85;font-size:.95rem;margin-bottom:1.1rem}
-.about-body p:last-child{margin-bottom:0}
-.about-chips{display:flex;flex-direction:column;gap:.6rem}
-.chip{
-  border:1px solid var(--rule);padding:.85rem 1rem;
-  display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;
-  transition:border-color .2s,background .2s;
-}
-.chip:hover{border-color:var(--gold-light);background:var(--gold-pale)}
-.chip .ck{font-family:var(--mono);font-size:.6rem;color:var(--ink3);letter-spacing:.12em;text-transform:uppercase;padding-top:.1rem;white-space:nowrap}
-.chip .cv{font-size:.85rem;color:var(--ink);text-align:right;line-height:1.4}
-
-/* ── Research interests ── */
-#interests{background:var(--cream2)}
-.int-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule)}
-.int-card{
-  background:var(--cream2);padding:2rem 1.75rem;
-  transition:background .25s;cursor:default;position:relative;overflow:hidden;
-}
-.int-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .35s}
-.int-card:hover{background:var(--cream)}
-.int-card:hover::before{width:2px}
-.int-card:hover .in{color:var(--gold)}
-.in{font-family:var(--mono);font-size:.6rem;color:var(--ink3);letter-spacing:.12em;margin-bottom:1rem;transition:color .25s}
-.it{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin-bottom:.4rem}
-.is{font-family:var(--mono);font-size:.67rem;color:var(--ink3);line-height:1.65}
-
-/* ── Projects ── */
-#projects{background:var(--cream)}
-.proj-row{
-  border-top:1px solid var(--rule);padding:2.25rem 0;
-  display:grid;grid-template-columns:2.5rem 2fr 1.5fr 6rem;gap:2rem;align-items:start;
-  transition:background .2s;cursor:default;position:relative;
-}
-.proj-row:last-child{border-bottom:1px solid var(--rule)}
-.proj-row::before{content:'';position:absolute;left:-4rem;right:-4rem;top:0;bottom:0;background:var(--gold-pale);opacity:0;transition:opacity .3s}
-.proj-row:hover::before{opacity:1}
-.proj-row:hover .proj-t{color:var(--gold)}
-.proj-i{font-family:var(--mono);font-size:.65rem;color:var(--ink3);position:relative;z-index:1;padding-top:.15rem}
-.proj-t{font-size:.95rem;font-weight:500;margin-bottom:.4rem;transition:color .2s;position:relative;z-index:1;line-height:1.35}
-.proj-d{font-size:.83rem;color:var(--ink2);line-height:1.65;position:relative;z-index:1}
-.proj-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.65rem;position:relative;z-index:1}
-.ptag{font-family:var(--mono);font-size:.6rem;color:var(--ink3);border:1px solid var(--rule);padding:.15rem .45rem;letter-spacing:.04em}
-.proj-m{font-family:var(--mono);font-size:.68rem;color:var(--ink2);line-height:1.65;position:relative;z-index:1}
-.proj-m b{display:block;font-size:.58rem;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;font-weight:400}
-.proj-a{font-family:var(--mono);font-size:.63rem;color:var(--gold);text-align:right;position:relative;z-index:1;letter-spacing:.04em;line-height:1.5}
-
-/* ── Papers ── */
-#papers{background:var(--cream2)}
-.paper-row{
-  border-top:1px solid var(--rule);padding:1.85rem 0;
-  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;
-  transition:background .2s;cursor:default;
-}
-.paper-row:last-child{border-bottom:1px solid var(--rule)}
-.paper-row:hover .paper-t{color:var(--gold)}
-.paper-t{font-family:var(--serif);font-style:italic;font-size:1.1rem;margin-bottom:.35rem;transition:color .2s;line-height:1.4}
-.paper-v{font-family:var(--mono);font-size:.65rem;color:var(--ink3);letter-spacing:.08em}
-.paper-badge{font-family:var(--mono);font-size:.6rem;padding:.22rem .65rem;letter-spacing:.08em;white-space:nowrap;border:1px solid}
-.badge-gold{color:var(--gold);border-color:rgba(139,105,20,.3);background:var(--gold-pale)}
-.badge-teal{color:#2a7b72;border-color:rgba(42,123,114,.25);background:rgba(42,123,114,.06)}
-
-/* ── Experience ── */
-#experience{background:var(--cream)}
-.exp-row{border-top:1px solid var(--rule);padding:2.25rem 0;display:grid;grid-template-columns:1fr auto;gap:2rem}
-.exp-row:last-child{border-bottom:1px solid var(--rule)}
-.exp-role{font-size:.98rem;font-weight:500;margin-bottom:.2rem}
-.exp-org{font-size:.85rem;color:var(--ink2);margin-bottom:.85rem}
+html{font-size:15px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--mono);overflow-x:hidden;cursor:none}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px);pointer-events:none;z-index:9990}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");pointer-events:none;z-index:9989}
+#cur{position:fixed;width:4px;height:18px;background:var(--green);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);animation:blink .8s step-end infinite}
+#cur-r{position:fixed;width:24px;height:24px;border:1px solid rgba(0,255,65,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .1s ease-out}
+body.cur-grow #cur{width:6px;height:22px;background:var(--cyan)}
+body.cur-grow #cur-r{width:36px;height:36px;border-color:rgba(0,212,255,.5)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#progress{position:fixed;top:0;left:0;height:1px;background:linear-gradient(90deg,var(--green),var(--cyan));z-index:600;width:0%;box-shadow:0 0 8px var(--green)}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,8,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+.nav-logo-img{width:32px;height:32px;border-radius:50%;border:1px solid var(--green);object-fit:cover;object-position:top center;filter:grayscale(20%) brightness(1.1);box-shadow:0 0 8px rgba(0,255,65,.3)}
+.nav-logo-txt{font-size:.7rem;color:var(--green);letter-spacing:.15em;text-transform:uppercase}
+.nav-logo-txt span{color:var(--fg2)}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links li a{font-size:.62rem;color:var(--fg3);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .9rem;border-left:1px solid var(--border);transition:color .2s,background .2s;display:block}
+.nav-links li:last-child a{border-right:1px solid var(--border)}
+.nav-links li a:hover{color:var(--green);background:var(--green3)}
+.nav-links li a::before{content:'./';color:var(--fg3);transition:color .2s}
+.nav-links li a:hover::before{color:var(--green)}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 400px;align-items:center;gap:3rem;padding:6rem 3rem 3rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 80% 50%,rgba(0,255,65,.04) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(0,212,255,.03) 0%,transparent 50%)}
+.terminal{background:var(--bg2);border:1px solid var(--border2);box-shadow:0 0 40px rgba(0,255,65,.05),inset 0 0 30px rgba(0,0,0,.5)}
+.term-bar{background:var(--panel);border-bottom:1px solid var(--border2);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem}
+.term-dot{width:10px;height:10px;border-radius:50%}
+.term-dot.r{background:#ff5f57}.term-dot.y{background:#ffbd2e}.term-dot.g{background:#28c840}
+.term-title{font-size:.6rem;color:var(--fg3);letter-spacing:.1em;margin-left:auto;margin-right:auto}
+.term-body{padding:1.5rem;font-size:.78rem;line-height:1.8}
+.prompt{color:var(--green);font-size:.72rem}.prompt-path{color:var(--cyan)}.prompt-sym{color:var(--purple)}
+.cmd{color:var(--fg)}.out-key{color:var(--cyan)}.out-val{color:var(--fg2)}.out-str{color:var(--yellow)}.out-num{color:var(--purple)}.out-bool{color:var(--green)}
+.blink-cur{display:inline-block;width:8px;height:14px;background:var(--green);animation:blink .8s step-end infinite;vertical-align:middle;margin-left:2px}
+.hero-right{display:flex;flex-direction:column;gap:1.5rem;opacity:0;animation:fadeUp .8s .5s both}
+.photo-wrap{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--border2)}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(30%) contrast(1.1) brightness(.9)}
+.photo-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(5,5,8,.95) 100%);pointer-events:none}
+.photo-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,255,65,.025) 3px,rgba(0,255,65,.025) 4px);pointer-events:none}
+.photo-wrap::before,.photo-wrap::after{content:'';position:absolute;width:16px;height:16px;z-index:2}
+.photo-wrap::before{top:8px;left:8px;border-top:2px solid var(--green);border-left:2px solid var(--green)}
+.photo-wrap::after{bottom:8px;right:8px;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan)}
+.photo-caption{position:absolute;bottom:12px;left:12px;right:12px;z-index:2;font-size:.6rem;color:var(--green);letter-spacing:.1em}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.stat-cell{background:var(--panel);padding:.85rem;border-bottom:2px solid transparent;transition:border-color .2s,background .2s}
+.stat-cell:hover{border-color:var(--green);background:var(--bg3)}
+.stat-cell .sv{font-family:var(--mono2);font-size:1.3rem;color:var(--green);line-height:1}
+.stat-cell .sl{font-size:.55rem;color:var(--fg3);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
+.hero-left{opacity:0;animation:fadeUp .8s .15s both}
+.hero-tag{font-size:.65rem;color:var(--green);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.hero-tag::before{content:'[';color:var(--fg3)}.hero-tag::after{content:']';color:var(--fg3)}
+.hero-name{font-family:var(--mono2);font-size:clamp(2.2rem,4.5vw,4rem);line-height:1;letter-spacing:-.01em;margin-bottom:.5rem;color:var(--fg)}
+.hero-name .hn1{color:var(--fg2);font-size:.65em}
+.hero-name .hn2{color:var(--green);display:block;text-shadow:0 0 20px rgba(0,255,65,.4)}
+.hero-sub{font-size:.75rem;color:var(--fg2);margin-bottom:2rem;line-height:1.6;letter-spacing:.04em}
+.hero-sub .pipe{color:var(--border2);margin:0 .5rem}
+.hero-desc{font-size:.8rem;color:var(--fg2);line-height:1.9;max-width:520px;margin-bottom:2rem;border-left:2px solid var(--border2);padding-left:1rem}
+.hero-desc .hl{color:var(--cyan)}
+.cta-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2rem}
+.btn{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.25rem;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem;border:1px solid}
+.btn-green{background:transparent;color:var(--green);border-color:var(--green)}
+.btn-green:hover{background:var(--green);color:var(--bg);box-shadow:0 0 16px rgba(0,255,65,.3)}
+.btn-cyan{background:transparent;color:var(--cyan);border-color:rgba(0,212,255,.4)}
+.btn-cyan:hover{background:rgba(0,212,255,.1);box-shadow:0 0 16px rgba(0,212,255,.2)}
+.btn-ghost{background:transparent;color:var(--fg3);border-color:var(--border2)}
+.btn-ghost:hover{color:var(--fg);border-color:var(--fg3)}
+.social-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.soc{font-size:.6rem;color:var(--fg3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .75rem;border:1px solid var(--border);display:flex;align-items:center;gap:.35rem;transition:color .2s,border-color .2s,background .2s}
+.soc:hover{color:var(--green);border-color:rgba(0,255,65,.3);background:var(--green3)}
+.soc svg{width:11px;height:11px;fill:currentColor}
+.sec{padding:6rem 3rem;border-top:1px solid var(--border)}
+.sec-inner{max-width:1120px;margin:0 auto}
+.sec-head{display:flex;align-items:center;gap:1.5rem;margin-bottom:3.5rem}
+.sec-num{font-size:.6rem;color:var(--green);letter-spacing:.15em}
+.sec-title{font-family:var(--mono2);font-size:clamp(1.3rem,2.5vw,2rem);color:var(--fg)}
+.sec-title .hl{color:var(--green)}
+.sec-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start}
+.about-txt p{color:var(--fg2);line-height:1.9;font-size:.82rem;margin-bottom:.9rem}
+.about-txt .hl{color:var(--cyan)}
+.chip-list{display:flex;flex-direction:column;gap:0}
+.chip-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem .9rem;border:1px solid var(--border);margin-top:-1px;transition:background .2s,border-color .2s}
+.chip-row:hover{background:var(--green3);border-color:rgba(0,255,65,.2)}
+.chip-row:hover .ck{color:var(--green)}
+.ck{font-size:.58rem;color:var(--fg3);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.cv{font-size:.78rem;color:var(--fg);text-align:right;line-height:1.4}
+#interests{background:var(--bg)}
+.int-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.int-card{background:var(--bg);padding:1.75rem 1.5rem;position:relative;overflow:hidden;cursor:default;transition:background .2s}
+.int-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--green);transition:width .4s}
+.int-card:hover{background:var(--bg2)}
+.int-card:hover::after{width:100%}
+.int-card:hover .in{color:var(--green)}
+.in{font-size:.58rem;color:var(--fg3);letter-spacing:.15em;margin-bottom:.9rem;transition:color .2s}
+.it{font-size:.88rem;color:var(--fg);margin-bottom:.4rem;line-height:1.3}
+.is{font-size:.65rem;color:var(--fg3);line-height:1.65;font-family:var(--mono2)}
+#projects{background:var(--bg2)}
+.proj-list{display:flex;flex-direction:column}
+.proj{border-top:1px solid var(--border);padding:2rem 0;display:grid;grid-template-columns:3rem 1fr 1fr 5.5rem;gap:2rem;align-items:start;position:relative;transition:background .2s;cursor:default}
+.proj:last-child{border-bottom:1px solid var(--border)}
+.proj::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--green3),transparent);transition:width .4s}
+.proj:hover::before{width:100%}
+.proj:hover .proj-t{color:var(--green)}
+.proj-n{font-size:.6rem;color:var(--fg3);letter-spacing:.1em;padding-top:.2rem;position:relative;z-index:1}
+.proj-t{font-size:.9rem;color:var(--fg);font-weight:400;margin-bottom:.35rem;transition:color .2s;line-height:1.3;position:relative;z-index:1}
+.proj-d{font-size:.77rem;color:var(--fg2);line-height:1.7;position:relative;z-index:1}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem;position:relative;z-index:1}
+.ptag{font-size:.58rem;color:var(--fg3);border:1px solid var(--border2);padding:.12rem .4rem;letter-spacing:.04em;transition:all .2s}
+.proj:hover .ptag{border-color:rgba(0,255,65,.2);color:var(--green2)}
+.proj-m{font-size:.65rem;color:var(--fg2);line-height:1.7;position:relative;z-index:1}
+.proj-m b{display:block;font-size:.56rem;color:var(--fg3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;font-weight:400}
+.proj-a{font-size:.6rem;color:var(--cyan);text-align:right;position:relative;z-index:1;letter-spacing:.04em;line-height:1.5}
+#papers{background:var(--bg)}
+.paper-list{display:flex;flex-direction:column}
+.paper{border-top:1px solid var(--border);padding:1.75rem 0;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;cursor:default;transition:background .2s}
+.paper:last-child{border-bottom:1px solid var(--border)}
+.paper:hover .paper-t{color:var(--green)}
+.paper-t{font-size:.88rem;color:var(--fg);margin-bottom:.3rem;transition:color .2s;line-height:1.4}
+.paper-v{font-size:.62rem;color:var(--fg3);letter-spacing:.08em}
+.badge{font-size:.58rem;padding:.2rem .6rem;letter-spacing:.08em;white-space:nowrap;border:1px solid}
+.badge-g{color:var(--green);border-color:rgba(0,255,65,.3);background:var(--green3)}
+.badge-c{color:var(--cyan);border-color:rgba(0,212,255,.3);background:var(--cyan2)}
+#experience{background:var(--bg2)}
+.exp-list{display:flex;flex-direction:column}
+.exp{border-top:1px solid var(--border);padding:2rem 0;display:grid;grid-template-columns:1fr auto;gap:2rem}
+.exp:last-child{border-bottom:1px solid var(--border)}
+.exp-role{font-size:.88rem;color:var(--fg);font-weight:400;margin-bottom:.15rem}
+.exp-org{font-size:.72rem;color:var(--fg3);margin-bottom:.75rem;letter-spacing:.04em}
+.exp-org .hl{color:var(--cyan)}
 .exp-buls{list-style:none;display:flex;flex-direction:column;gap:.3rem}
-.exp-buls li{font-size:.83rem;color:var(--ink2);padding-left:1.1rem;position:relative;line-height:1.6}
-.exp-buls li::before{content:'—';position:absolute;left:0;color:var(--gold)}
-.exp-yr{font-family:var(--mono);font-size:.62rem;color:var(--ink3);letter-spacing:.06em;white-space:nowrap;text-align:right}
-
-/* ── Skills ── */
-#skills{background:var(--cream2)}
-.skills-block{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);margin-bottom:4rem}
-.skill-cell{background:var(--cream2);padding:1.5rem 1.75rem}
-.skill-label{font-family:var(--mono);font-size:.62rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.85rem}
-.skill-pills{display:flex;flex-wrap:wrap;gap:.4rem}
-.sp{font-family:var(--mono);font-size:.68rem;color:var(--ink2);border:1px solid var(--rule);padding:.25rem .6rem;transition:all .2s;cursor:default}
-.sp:hover{border-color:var(--gold-light);color:var(--gold);background:var(--gold-pale)}
-
-.creds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule)}
-.cred-cell{background:var(--cream2);padding:1.5rem;transition:background .2s}
-.cred-cell:hover{background:var(--cream)}
-.cred-n{font-family:var(--serif);font-size:1rem;margin-bottom:.3rem}
-.cred-b{font-family:var(--mono);font-size:.6rem;color:var(--ink3);letter-spacing:.08em}
-
-/* ── Currently ── */
-#now{background:var(--cream)}
-.now-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.now-card{border:1px solid var(--rule);padding:1.75rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;cursor:default}
-.now-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.now-card:hover{border-color:var(--gold-light);transform:translateY(-3px)}
-.now-card:hover::after{transform:scaleX(1)}
-.now-n{font-family:var(--mono);font-size:.6rem;color:var(--ink3);letter-spacing:.12em;margin-bottom:1rem}
-.now-t{font-size:.92rem;font-weight:500;margin-bottom:.5rem;line-height:1.3}
-.now-d{font-size:.83rem;color:var(--ink2);line-height:1.65}
-
-/* ── Contact / Footer ── */
-#contact{
-  background:var(--ink);padding:8rem 4rem;
-  display:flex;flex-direction:column;align-items:center;text-align:center;
-  position:relative;overflow:hidden;
-}
-#contact::before{
-  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:500px;height:300px;
-  background:radial-gradient(ellipse,rgba(201,168,76,.12) 0%,transparent 70%);
-  pointer-events:none;
-}
-.contact-pre{font-family:var(--mono);font-size:.68rem;color:var(--gold-light);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem}
-.contact-h{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:var(--cream);margin-bottom:.5rem;line-height:1.1}
-.contact-h em{font-style:italic;color:var(--gold-light)}
-.contact-sub{font-size:.88rem;color:rgba(250,248,244,.45);margin-bottom:3.5rem;font-family:var(--mono);letter-spacing:.06em}
-.contact-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:5rem}
-.clink{
-  font-family:var(--mono);font-size:.68rem;color:rgba(250,248,244,.6);
-  text-decoration:none;letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.12);padding:.7rem 1.4rem;
-  display:flex;align-items:center;gap:.5rem;
-  transition:color .2s,border-color .2s,background .2s;
-}
-.clink:hover{color:var(--gold-light);border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.06)}
-.footer-txt{font-family:var(--mono);font-size:.6rem;color:rgba(250,248,244,.2);letter-spacing:.1em}
-
-/* ── Scroll reveal ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
+.exp-buls li{font-size:.75rem;color:var(--fg2);padding-left:1rem;position:relative;line-height:1.65}
+.exp-buls li::before{content:'>';position:absolute;left:0;color:var(--green);font-size:.7rem}
+.exp-yr{font-size:.6rem;color:var(--fg3);white-space:nowrap;text-align:right;letter-spacing:.06em;padding-top:.2rem}
+#skills{background:var(--bg)}
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-bottom:3rem}
+.skill-cell{background:var(--bg);padding:1.5rem}
+.skill-lbl{font-size:.58rem;color:var(--green);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.skill-lbl::before{content:'#';color:var(--fg3)}
+.pills{display:flex;flex-wrap:wrap;gap:.35rem}
+.pill{font-size:.65rem;color:var(--fg3);border:1px solid var(--border2);padding:.22rem .55rem;transition:all .2s;cursor:default}
+.pill:hover{color:var(--green);border-color:rgba(0,255,65,.3);background:var(--green3)}
+.creds-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.cred{background:var(--bg2);padding:1.25rem;transition:background .2s}
+.cred:hover{background:var(--bg3)}
+.cred-n{font-size:.82rem;color:var(--fg);margin-bottom:.25rem;line-height:1.3}
+.cred-b{font-size:.58rem;color:var(--fg3);letter-spacing:.08em}
+#now{background:var(--bg2)}
+.now-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.now-card{background:var(--bg2);padding:1.75rem;position:relative;overflow:hidden;cursor:default;transition:background .2s}
+.now-card:hover{background:var(--bg3)}
+.now-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.now-card:hover::before{transform:scaleX(1)}
+.now-n{font-size:.58rem;color:var(--fg3);letter-spacing:.12em;margin-bottom:.85rem}
+.now-t{font-size:.88rem;color:var(--fg);margin-bottom:.5rem;line-height:1.3}
+.now-d{font-size:.75rem;color:var(--fg2);line-height:1.65}
+.now-d .hl{color:var(--cyan)}
+#contact{background:var(--bg);padding:8rem 3rem;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(0,255,65,.04) 0%,transparent 70%);pointer-events:none}
+.contact-term{background:var(--bg2);border:1px solid var(--border2);padding:2.5rem;max-width:560px;width:100%;text-align:left;margin-bottom:3rem}
+.contact-line{font-size:.75rem;color:var(--fg2);margin-bottom:.5rem;line-height:1.6}
+.contact-line .hl{color:var(--green)}.contact-line .hl2{color:var(--cyan)}
+.c-links{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:4rem}
+.c-lnk{font-size:.6rem;color:var(--fg2);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border2);padding:.6rem 1.2rem;display:flex;align-items:center;gap:.4rem;transition:all .2s}
+.c-lnk:hover{color:var(--green);border-color:rgba(0,255,65,.3);background:var(--green3)}
+.footer{font-size:.58rem;color:var(--fg3);letter-spacing:.1em}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
-.reveal-delay-1{transition-delay:.08s}
-.reveal-delay-2{transition-delay:.16s}
-.reveal-delay-3{transition-delay:.24s}
-
-/* ── Animations ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-
-/* ── Mobile ── */
-@media(max-width:900px){
-  nav{padding:1.25rem 1.5rem}
-  .nav-links{gap:1.5rem}
-  #hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;gap:3rem}
-  .hero-right{align-items:flex-start}
-  .stats-mini{width:100%}
-  .section{padding:4.5rem 1.5rem}
-  .about-cols{grid-template-columns:1fr;gap:3rem}
+.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@media(max-width:1000px){
+  #hero{grid-template-columns:1fr;padding:5rem 1.5rem 3rem}
+  .hero-right{order:-1}
+  .photo-wrap{max-height:280px;aspect-ratio:unset}
+  .sec{padding:4rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
   .int-grid{grid-template-columns:1fr 1fr}
-  .proj-row{grid-template-columns:2.5rem 1fr;gap:1rem}
+  .proj{grid-template-columns:3rem 1fr;gap:1rem}
   .proj-m,.proj-a{display:none}
-  .paper-row{grid-template-columns:1fr}
-  .skills-block{grid-template-columns:1fr}
-  .creds-grid{grid-template-columns:1fr 1fr;gap:1px}
-  .now-cards{grid-template-columns:1fr}
-  #contact{padding:5rem 1.5rem}
+  .paper{grid-template-columns:1fr}
+  .skill-grid{grid-template-columns:1fr}
+  .creds-row{grid-template-columns:1fr 1fr}
+  .now-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .int-grid{grid-template-columns:1fr}
-  .creds-grid{grid-template-columns:1fr}
+  nav{padding:.8rem 1rem}
   .nav-links{display:none}
+  .int-grid{grid-template-columns:1fr}
+  .creds-row{grid-template-columns:1fr}
+  #contact{padding:4rem 1rem}
 }
 </style>
 </head>
 <body>
-
-<div id="cur"></div>
-<div id="cur-r"></div>
-<div id="progress"></div>
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="#hero" class="nav-name">Shanchhith Singh Nayak</a>
+<div id="cur"></div><div id="cur-r"></div><div id="progress"></div>
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="IMG_8828.JPG" alt="SSN" class="nav-logo-img">
+    <span class="nav-logo-txt">ssn<span>@research</span></span>
+  </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#papers">Papers</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#papers">papers</a></li>
+    <li><a href="#experience">exp</a></li>
+    <li><a href="#contact">contact</a></li>
   </ul>
 </nav>
-
-<!-- HERO -->
 <section id="hero">
+  <div class="hero-glow"></div>
   <div class="hero-left">
-    <div class="hero-eyebrow">Quantitative Researcher</div>
-    <h1 class="hero-name">Shanchhith<br><em>Singh Nayak</em></h1>
-    <p class="hero-title"><br>Emperical IO · Causal Inference · Quant Marketing · ML & AI · LLM </p>
-    <p class="hero-desc">I build causal inference pipelines, demand estimation models, and policy evaluation frameworks at the intersection of empirical economics, machine learning, and health systems research.</p>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn btn-solid">View Research</a>
-      <a href="mailto:shanchhithsingh@gmail.com" class="btn btn-outline">Get in Touch</a>
-      <a href="https://shanchhith.github.io/cv.pdf" class="btn btn-outline" target="_blank">CV ↓</a>
+    <div class="hero-tag">Quantitative Researcher</div>
+    <h1 class="hero-name"><span class="hn1">Shanchhith</span><span class="hn2">Singh Nayak</span></h1>
+    <p class="hero-sub">IIM Ahmedabad<span class="pipe">|</span>Stanford GSB<span class="pipe">|</span>Health Economics<span class="pipe">|</span>Causal Inference</p>
+    <div class="terminal" style="margin-bottom:1.75rem;opacity:0;animation:fadeUp .8s .3s both">
+      <div class="term-bar"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div><span class="term-title">research_profile.json</span></div>
+      <div class="term-body">
+        <div style="margin-bottom:.5rem"><span class="prompt">ssn</span><span style="color:var(--fg3)">@</span><span class="prompt-path">research</span><span class="prompt-sym"> ~</span><span style="color:var(--fg3)"> $ </span><span class="cmd">cat profile.json</span></div>
+        <div style="color:var(--fg3)">{</div>
+        <div style="padding-left:1.2rem"><span class="out-key">"role"</span><span style="color:var(--fg3)">: </span><span class="out-str">"Pre-Doctoral Research Associate"</span><span style="color:var(--fg3)">,</span></div>
+        <div style="padding-left:1.2rem"><span class="out-key">"affil"</span><span style="color:var(--fg3)">: </span><span class="out-str">"Stanford GSB x IIM Ahmedabad"</span><span style="color:var(--fg3)">,</span></div>
+        <div style="padding-left:1.2rem"><span class="out-key">"methods"</span><span style="color:var(--fg3)">: [</span><span class="out-str">"DiD"</span><span style="color:var(--fg3)">, </span><span class="out-str">"PSM"</span><span style="color:var(--fg3)">, </span><span class="out-str">"IV"</span><span style="color:var(--fg3)">, </span><span class="out-str">"LoRA"</span><span style="color:var(--fg3)">],</span></div>
+        <div style="padding-left:1.2rem"><span class="out-key">"phd_target"</span><span style="color:var(--fg3)">: </span><span class="out-str">"Fall 2027"</span><span style="color:var(--fg3)">,</span></div>
+        <div style="padding-left:1.2rem"><span class="out-key">"status"</span><span style="color:var(--fg3)">: </span><span class="out-bool">true</span></div>
+        <div style="color:var(--fg3)">}</div>
+        <div style="margin-top:.75rem"><span class="prompt">ssn</span><span style="color:var(--fg3)">@</span><span class="prompt-path">research</span><span class="prompt-sym"> ~</span><span style="color:var(--fg3)"> $ </span><span class="blink-cur"></span></div>
+      </div>
     </div>
-    <div class="hero-socials">
-      <a href="mailto:shanchhithsingh@gmail.com" class="social-link">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        Email
-      </a>
-      <a href="https://github.com/Shanchhith" class="social-link" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/shanchhith" class="social-link" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" class="social-link" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
-        Scholar
-      </a>
+    <div class="cta-row" style="opacity:0;animation:fadeUp .8s .5s both">
+      <a href="#projects" class="btn btn-green">$ ./view_research</a>
+      <a href="mailto:shanchhithsingh@gmail.com" class="btn btn-cyan">$ ./contact</a>
+      <a href="https://shanchhith.github.io/cv.pdf" class="btn btn-ghost" target="_blank">$ get cv.pdf</a>
+    </div>
+    <div class="social-row" style="opacity:0;animation:fadeUp .8s .65s both">
+      <a href="mailto:shanchhithsingh@gmail.com" class="soc"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>email</a>
+      <a href="https://github.com/Shanchhith" class="soc" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>github</a>
+      <a href="https://www.linkedin.com/in/shanchhith" class="soc" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>linkedin</a>
+      <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" class="soc" target="_blank"><svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>scholar</a>
     </div>
   </div>
-
   <div class="hero-right">
-    <div class="photo-frame" id="photo-wrap">
-      <!-- Replace src below with your actual image path once uploaded -->
-      <div class="photo-placeholder" id="photo-placeholder">
-        <div class="initials">SSN</div>
-        <div class="ph-label">Upload photo to replace</div>
-      </div>
-      <img id="hero-photo" src="IMG_8828.JPG" alt="Shanchhith Singh Nayak" style="display:none" onload="this.style.display='block';document.getElementById('photo-placeholder').style.display='none'">
+    <div class="photo-wrap">
+      <img src="IMG_8828.JPG" alt="Shanchhith Singh Nayak">
+      <div class="photo-overlay"></div><div class="photo-scan"></div>
+      <div class="photo-caption">// shanchhith_singh_nayak.jpg</div>
     </div>
-    <div class="stats-mini">
-      <div class="stat-card"><div class="sn">9+</div><div class="sl">Research Projects</div></div>
-      <div class="stat-card"><div class="sn">2</div><div class="sl">Working Papers</div></div>
-      <div class="stat-card"><div class="sn">AIR 124</div><div class="sl">GATE Economics</div></div>
-      <div class="stat-card"><div class="sn">9.8</div><div class="sl">MS GPA / 10</div></div>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="sv">9+</div><div class="sl">Projects</div></div>
+      <div class="stat-cell"><div class="sv">3</div><div class="sl">Papers</div></div>
+      <div class="stat-cell"><div class="sv">AIR 124</div><div class="sl">GATE Econ</div></div>
+      <div class="stat-cell"><div class="sv">9.8</div><div class="sl">MS GPA / 10</div></div>
     </div>
   </div>
 </section>
-
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="section-inner">
-    <div class="sec-header reveal">
-      <span class="sec-num">01</span>
-      <h2 class="sec-title">About <em>me</em></h2>
-      <span class="sec-line"></span>
-    </div>
-    <div class="about-cols">
-      <div class="about-body reveal">
-        <p>I am a quantitative researcher working on causal programme evaluation, consumer behaviour, and structural approaches to demand estimation. My work spans health systems, packaged goods markets, and platform economics.</p>
-        <p>Previously worked at IIMA at CMHS supporting World Bank HRH project for evaluating and assisting states for preparing a implementation ready HRH policy for the healthcare sector.</p>
-        <p> Currently based in Kashipur, working as a Remote RA at Stanford GSB, working on several ML and AI implementation Projects with the faculty.</p>
-      </div>
-      <div class="about-chips reveal reveal-delay-1">
-        <div class="chip"><span class="ck">Location</span><span class="cv">Kashipur, India</span></div>
-        <div class="chip"><span class="ck">Current</span><span class="cv">Remote RA · Stanford GSB</span></div>
-        <div class="chip"><span class="ck">Previously</span><span class="cv">IIM Ahmedabad + World Bank HRH Project</span></div>
-        <div class="chip"><span class="ck">Education</span><span class="cv">M.S. Economics · IISER Bhopal<br>CGPA 9.80 / 10</span></div>
-        <div class="chip"><span class="ck">GATE</span><span class="cv">Economics · AIR 124</span></div>
-        <div class="chip"><span class="ck">UGC-NET</span><span class="cv">Economics · 99th percentile</span></div>
-        <div class="chip"><span class="ck">Fellowship</span><span class="cv">Don Lavoie Fellow · Mercatus Center</span></div>
+<section class="sec" id="about">
+  <div class="sec-inner">
+    <div class="sec-head reveal"><span class="sec-num">// 01</span><h2 class="sec-title">about<span class="hl">()</span></h2><span class="sec-rule"></span></div>
+    <div class="about-grid">
+      <div class="about-txt reveal"><p>I am a quantitative researcher working on <span class="hl">causal programme evaluation</span>, consumer behaviour, and structural demand estimation. My work spans health systems, packaged goods markets, and platform economics.</p><p>Currently based in Ahmedabad, supporting a <span class="hl">World Bank-funded HRH project</span> at IIM Ahmedabad and working remotely with <span class="hl">Stanford GSB</span> on consumer behaviour pipelines.</p><p>Targeting PhD programmes in Quantitative Marketing and Business Economics for <span class="hl">Fall 2027</span>, with interest in empirical IO, demand estimation, and health market design.</p></div>
+      <div class="chip-list reveal d1">
+        <div class="chip-row"><span class="ck">location</span><span class="cv">Ahmedabad, India</span></div>
+        <div class="chip-row"><span class="ck">current</span><span class="cv">Pre-Doc RA · Stanford GSB</span></div>
+        <div class="chip-row"><span class="ck">also at</span><span class="cv">IIM Ahmedabad · CMHS</span></div>
+        <div class="chip-row"><span class="ck">education</span><span class="cv">M.S. Economics · IISER Bhopal · 9.80/10</span></div>
+        <div class="chip-row"><span class="ck">GATE</span><span class="cv">Economics · AIR 124</span></div>
+        <div class="chip-row"><span class="ck">UGC-NET</span><span class="cv">Economics · 99th percentile</span></div>
+        <div class="chip-row"><span class="ck">fellowship</span><span class="cv">Don Lavoie · Mercatus Center</span></div>
+        <div class="chip-row"><span class="ck">open to</span><span class="cv">Research roles · Pre-docs · Relocate</span></div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- INTERESTS -->
-<section class="section" id="interests" style="background:var(--cream2)">
-  <div class="section-inner">
-    <div class="sec-header reveal">
-      <span class="sec-num">02</span>
-      <h2 class="sec-title">Research <em>Interests</em></h2>
-      <span class="sec-line"></span>
-    </div>
+<section class="sec" id="interests" style="background:var(--bg2)">
+  <div class="sec-inner">
+    <div class="sec-head reveal"><span class="sec-num">// 02</span><h2 class="sec-title">research_interests<span class="hl">[]</span></h2><span class="sec-rule"></span></div>
     <div class="int-grid reveal">
       <div class="int-card"><div class="in">01</div><div class="it">Empirical Industrial Organisation</div><div class="is">Demand estimation · market structure · pricing · structural models</div></div>
-      <div class="int-card"><div class="in">02</div><div class="it">Health Economics & Policy</div><div class="is">HRH systems · field experiments · causal programme evaluation</div></div>
+      <div class="int-card"><div class="in">02</div><div class="it">Health Economics &amp; Policy</div><div class="is">HRH systems · field experiments · causal programme evaluation</div></div>
       <div class="int-card"><div class="in">03</div><div class="it">Quantitative Marketing</div><div class="is">Shrinkflation · model diversity · consumer behaviour · ad effects</div></div>
       <div class="int-card"><div class="in">04</div><div class="it">Causal Inference</div><div class="is">DiD · PSM · IV · staggered rollout · regression discontinuity</div></div>
-      <div class="int-card"><div class="in">05</div><div class="it">LLMs & Demand Estimation</div><div class="is">LoRA fine-tuning · interpretability · price IV estimation</div></div>
+      <div class="int-card"><div class="in">05</div><div class="it">LLMs &amp; Demand Estimation</div><div class="is">LoRA fine-tuning · interpretability · price IV estimation</div></div>
       <div class="int-card"><div class="in">06</div><div class="it">Historical Econometrics</div><div class="is">Marriage markets · revealed preferences · archival OCR pipelines</div></div>
     </div>
   </div>
 </section>
-
-<!-- PROJECTS -->
-<section class="section" id="projects">
-  <div class="section-inner">
-    <div class="sec-header reveal">
-      <span class="sec-num">03</span>
-      <h2 class="sec-title">Selected <em>Projects</em></h2>
-      <span class="sec-line"></span>
-    </div>
-
-    <div class="proj-row reveal">
-      <div class="proj-i">01</div>
-      <div><div class="proj-t">Shrinkflation Detection Pipeline</div><div class="proj-d">GPU-accelerated SKU-matching pipeline to detect shrinkflation in packaged goods markets. Embedding-based candidate retrieval, cross-encoder scoring, and evaluation workflows with threshold calibration.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">GPU</span><span class="ptag">Embeddings</span><span class="ptag">Precision@k</span></div></div>
-      <div class="proj-m"><b>Methods</b>Semantic embeddings · cross-encoder · eval pipeline</div>
-      <div class="proj-a">Stanford GSB</div>
-    </div>
-
-    <div class="proj-row reveal">
-      <div class="proj-i">02</div>
-      <div><div class="proj-t">Human vs AI Coaches — Weight Loss Platform</div><div class="proj-d">Reconstructed large-scale panel data from HealthifyMe. PSM with KD-trees and Mahalanobis distance to estimate causal effects of human coaching on weight loss. Full replication package on GitHub.</div><div class="proj-tags"><span class="ptag">PSM</span><span class="ptag">Panel Data</span><span class="ptag">KD-Trees</span><span class="ptag">OLS</span></div></div>
-      <div class="proj-m"><b>Methods</b>Propensity score matching · Mahalanobis · OLS</div>
-      <div class="proj-a">Stanford GSB</div>
-    </div>
-
-    <div class="proj-row reveal">
-      <div class="proj-i">03</div>
-      <div><div class="proj-t">Revealed Preferences — Indian Marriage Market (1950–2010)</div><div class="proj-d">OCR + LLM classification pipeline processing 60 years of matrimonial classifieds from the Times of India. Structural analysis of revealed preferences across caste, education, and geography.</div><div class="proj-tags"><span class="ptag">OCR</span><span class="ptag">LLM</span><span class="ptag">Structural Estimation</span></div></div>
-      <div class="proj-m"><b>Methods</b>OCR pipeline · LLM · structural estimation</div>
-      <div class="proj-a">IISER Bhopal</div>
-    </div>
-
-    <div class="proj-row reveal">
-      <div class="proj-i">04</div>
-      <div><div class="proj-t">Debt Collection Regulation — Causal Analysis</div><div class="proj-d">Difference-in-differences on firm-level call data estimating causal effect of regulatory limits on call frequency and collections. Parallel trends validation and robustness checks.</div><div class="proj-tags"><span class="ptag">DiD</span><span class="ptag">Stata</span><span class="ptag">Event Study</span></div></div>
-      <div class="proj-m"><b>Methods</b>Difference-in-differences · event study</div>
-      <div class="proj-a">Univ. of Missouri</div>
-    </div>
-
-    <div class="proj-row reveal">
-      <div class="proj-i">05</div>
-      <div><div class="proj-t">Model Diversity & Product Success in Online Fashion</div><div class="proj-d">1,000+ synthetic model images via Midjourney with structured prompting. Qualtrics/Prolific experiment estimating causal effect of model racial diversity on consumer product choice.</div><div class="proj-tags"><span class="ptag">Midjourney</span><span class="ptag">Qualtrics</span><span class="ptag">Prolific</span><span class="ptag">Experiment</span></div></div>
-      <div class="proj-m"><b>Methods</b>Online experiment · conjoint analysis</div>
-      <div class="proj-a">HBS / Missouri</div>
-    </div>
-
-    <div class="proj-row reveal">
-      <div class="proj-i">06</div>
-      <div><div class="proj-t">LLM-Based Demand Estimation (Replication + Extension)</div><div class="proj-d">Replicating and extending Kevin Lee's LLM-based demand estimation paper. Pipeline: LoRA fine-tuning → IV price estimation → interpretability methods. Under faculty supervision.</div><div class="proj-tags"><span class="ptag">LoRA</span><span class="ptag">HuggingFace</span><span class="ptag">IV Estimation</span><span class="ptag">PyTorch</span></div></div>
-      <div class="proj-m"><b>Methods</b>LoRA · IV estimation · structural demand</div>
-      <div class="proj-a">In Progress</div>
-    </div>
-
-    <div class="proj-row reveal">
-      <div class="proj-i">07</div>
-      <div><div class="proj-t">HRH Capacity Surveys — 7-State India</div><div class="proj-d">Designed and implemented hospital and trainee surveys across seven Indian states on HRH capacity, training quality, and service delivery. Mixed-methods synthesis for World Bank policy inputs.</div><div class="proj-tags"><span class="ptag">Survey Design</span><span class="ptag">Mixed-Methods</span><span class="ptag">Policy</span></div></div>
-      <div class="proj-m"><b>Methods</b>Survey design · mixed-methods · KPI mapping</div>
-      <div class="proj-a">World Bank / IIMA</div>
+<section class="sec" id="projects">
+  <div class="sec-inner">
+    <div class="sec-head reveal"><span class="sec-num">// 03</span><h2 class="sec-title">projects<span class="hl">.map()</span></h2><span class="sec-rule"></span></div>
+    <div class="proj-list">
+      <div class="proj reveal"><div class="proj-n">01</div><div><div class="proj-t">Shrinkflation Detection Pipeline</div><div class="proj-d">GPU-accelerated SKU-matching pipeline detecting shrinkflation in packaged goods. Embedding retrieval, cross-encoder scoring, threshold calibration and eval workflows.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">GPU</span><span class="ptag">Embeddings</span><span class="ptag">Precision@k</span></div></div><div class="proj-m"><b>Methods</b>Semantic embeddings · cross-encoder · eval</div><div class="proj-a">Stanford GSB</div></div>
+      <div class="proj reveal"><div class="proj-n">02</div><div><div class="proj-t">Human vs AI Coaches — HealthifyMe</div><div class="proj-d">Large-scale panel data reconstruction + PSM with KD-trees and Mahalanobis distance to estimate causal effects of human coaching on weight loss. Full replication package on GitHub.</div><div class="proj-tags"><span class="ptag">PSM</span><span class="ptag">Panel Data</span><span class="ptag">KD-Trees</span><span class="ptag">OLS</span></div></div><div class="proj-m"><b>Methods</b>PSM · Mahalanobis · OLS on matched sample</div><div class="proj-a">Stanford GSB</div></div>
+      <div class="proj reveal"><div class="proj-n">03</div><div><div class="proj-t">Revealed Preferences — Indian Marriage Market 1950-2010</div><div class="proj-d">OCR + LLM classification pipeline on 60 years of matrimonial classifieds. Structural analysis of revealed preferences across caste, education, and geography.</div><div class="proj-tags"><span class="ptag">OCR</span><span class="ptag">LLM</span><span class="ptag">Structural Estimation</span></div></div><div class="proj-m"><b>Methods</b>OCR pipeline · LLM · structural estimation</div><div class="proj-a">IISER Bhopal</div></div>
+      <div class="proj reveal"><div class="proj-n">04</div><div><div class="proj-t">Debt Collection Regulation — Causal Analysis</div><div class="proj-d">DiD on firm-level call data estimating causal effect of regulatory limits on call frequency and collections. Parallel trends validation and robustness checks.</div><div class="proj-tags"><span class="ptag">DiD</span><span class="ptag">Stata</span><span class="ptag">Event Study</span></div></div><div class="proj-m"><b>Methods</b>Difference-in-differences · event study</div><div class="proj-a">Univ. of Missouri</div></div>
+      <div class="proj reveal"><div class="proj-n">05</div><div><div class="proj-t">Model Diversity &amp; Product Success</div><div class="proj-d">1,000+ synthetic model images via Midjourney. Qualtrics/Prolific experiment estimating causal effect of racial diversity in product photography on consumer choice.</div><div class="proj-tags"><span class="ptag">Midjourney</span><span class="ptag">Qualtrics</span><span class="ptag">Prolific</span></div></div><div class="proj-m"><b>Methods</b>Online experiment · conjoint analysis</div><div class="proj-a">HBS / Missouri</div></div>
+      <div class="proj reveal"><div class="proj-n">06</div><div><div class="proj-t">LLM-Based Demand Estimation — Replication</div><div class="proj-d">Replicating Kevin Lee's LLM demand estimation paper. Pipeline: LoRA fine-tuning to IV price estimation to interpretability methods under faculty supervision.</div><div class="proj-tags"><span class="ptag">LoRA</span><span class="ptag">HuggingFace</span><span class="ptag">IV Estimation</span><span class="ptag">PyTorch</span></div></div><div class="proj-m"><b>Methods</b>LoRA · IV estimation · structural demand</div><div class="proj-a">In Progress</div></div>
+      <div class="proj reveal"><div class="proj-n">07</div><div><div class="proj-t">HRH Capacity Surveys — 7-State India</div><div class="proj-d">Hospital and trainee surveys across seven Indian states on HRH capacity and service delivery. Mixed-methods synthesis for World Bank policy inputs.</div><div class="proj-tags"><span class="ptag">Survey Design</span><span class="ptag">Mixed-Methods</span><span class="ptag">Policy</span></div></div><div class="proj-m"><b>Methods</b>Survey design · mixed-methods · KPI mapping</div><div class="proj-a">World Bank / IIMA</div></div>
     </div>
   </div>
 </section>
-
-<!-- PAPERS -->
-<section class="section" id="papers" style="background:var(--cream2)">
-  <div class="section-inner">
-    <div class="sec-header reveal">
-      <span class="sec-num">04</span>
-      <h2 class="sec-title">Papers & <em>Publications</em></h2>
-      <span class="sec-line"></span>
+<section class="sec" id="papers" style="background:var(--bg2)">
+  <div class="sec-inner">
+    <div class="sec-head reveal"><span class="sec-num">// 04</span><h2 class="sec-title">publications<span class="hl">.filter()</span></h2><span class="sec-rule"></span></div>
+    <div class="paper-list">
+      <div class="paper reveal"><div><div class="paper-t">Digital Divide and Learning Outcomes (Bloom's Taxonomy): Post-Pandemic Evidence from Uttarakhand</div><div class="paper-v">Asian Economics Letters · ABDC-ranked</div></div><span class="badge badge-g">Forthcoming</span></div>
+      <div class="paper reveal"><div><div class="paper-t">Revealed Preferences in the Indian Marriage Market (1950-2010)</div><div class="paper-v">Working Paper</div></div><span class="badge badge-c">Working Paper</span></div>
+      <div class="paper reveal"><div><div class="paper-t">Heat Stress and Neonatal Mortality in India</div><div class="paper-v">Working Paper</div></div><span class="badge badge-c">Working Paper</span></div>
     </div>
-    </div>
-    <div class="paper-row reveal">
-      <div><div class="paper-t">Revealed Preferences in the Indian Marriage Market (1950–2010)</div><div class="paper-v">Working Paper</div></div>
-      <span class="paper-badge badge-teal">Working Paper</span>
-    </div>
-    <div class="paper-row reveal">
-      <div><div class="paper-t">Heat Stress and Neonatal Mortality in India</div><div class="paper-v">Working Paper</div></div>
-      <span class="paper-badge badge-teal">Working Paper</span>
-    </div>
-    <div style="margin-top:2rem" class="reveal">
-      <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" target="_blank" class="btn btn-outline" style="font-size:.65rem">View on Google Scholar ↗</a>
+    <div style="margin-top:1.75rem" class="reveal"><a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" target="_blank" class="btn btn-ghost">$ open scholar_profile</a></div>
+  </div>
+</section>
+<section class="sec" id="experience">
+  <div class="sec-inner">
+    <div class="sec-head reveal"><span class="sec-num">// 05</span><h2 class="sec-title">experience<span class="hl">.log()</span></h2><span class="sec-rule"></span></div>
+    <div class="exp-list">
+      <div class="exp reveal"><div><div class="exp-role">Pre-Doctoral Research Associate</div><div class="exp-org"><span class="hl">Stanford Graduate School of Business</span> · Remote / India</div><ul class="exp-buls"><li>Shrinkflation pipeline — GPU-accelerated SKU matching with embedding retrieval and cross-encoder scoring</li><li>HealthifyMe — PSM with KD-trees, panel data reconstruction, full replication package</li></ul></div><div class="exp-yr">2025 — Present</div></div>
+      <div class="exp reveal"><div><div class="exp-role">Quantitative Analyst</div><div class="exp-org"><span class="hl">World Bank (Health Policy)</span> &amp; IIM Ahmedabad · CMHS</div><ul class="exp-buls"><li>Analysis-ready datasets and reproducible reporting for World Bank HRH consortium across seven states</li><li>Statistical analyses — trend profiling, subgroup comparisons, robustness checks for policy briefs</li><li>Multi-stakeholder coordination translating policy questions into measurable KPIs</li></ul></div><div class="exp-yr">2025 — Present</div></div>
+      <div class="exp reveal"><div><div class="exp-role">Research Associate</div><div class="exp-org"><span class="hl">IIM Ahmedabad</span> · Centre for Management of Health Services</div><ul class="exp-buls"><li>Empirical research and policy analytics across HRH, maternal health, and health systems projects</li><li>Survey design, field protocols, reproducible scripts for external stakeholders</li></ul></div><div class="exp-yr">2024 — 2025</div></div>
+      <div class="exp reveal"><div><div class="exp-role">Remote Research Associate</div><div class="exp-org"><span class="hl">Univ. of Missouri</span> · Notre Dame · Harvard Business School</div><ul class="exp-buls"><li>Debt collection DiD · model diversity experiment · ad transparency geocoding pipeline</li></ul></div><div class="exp-yr">2024</div></div>
     </div>
   </div>
 </section>
-
-<!-- EXPERIENCE -->
-<section class="section" id="experience">
-  <div class="section-inner">
-    <div class="sec-header reveal">
-      <span class="sec-num">05</span>
-      <h2 class="sec-title">Work <em>Experience</em></h2>
-      <span class="sec-line"></span>
+<section class="sec" id="skills" style="background:var(--bg2)">
+  <div class="sec-inner">
+    <div class="sec-head reveal"><span class="sec-num">// 06</span><h2 class="sec-title">stack<span class="hl">.keys()</span></h2><span class="sec-rule"></span></div>
+    <div class="skill-grid reveal">
+      <div class="skill-cell"><div class="skill-lbl">languages</div><div class="pills"><span class="pill">Python</span><span class="pill">R</span><span class="pill">Stata</span><span class="pill">LaTeX</span></div></div>
+      <div class="skill-cell"><div class="skill-lbl">ml / stats</div><div class="pills"><span class="pill">XGBoost</span><span class="pill">scikit-learn</span><span class="pill">DiD</span><span class="pill">PSM</span><span class="pill">IV</span><span class="pill">Embeddings</span></div></div>
+      <div class="skill-cell"><div class="skill-lbl">data engineering</div><div class="pills"><span class="pill">pandas</span><span class="pill">NumPy</span><span class="pill">Panel Data</span><span class="pill">GCP</span><span class="pill">Databricks</span></div></div>
+      <div class="skill-cell"><div class="skill-lbl">deep learning</div><div class="pills"><span class="pill">PyTorch</span><span class="pill">HuggingFace PEFT</span><span class="pill">LoRA</span><span class="pill">OpenAI API</span></div></div>
     </div>
-    <div class="exp-row reveal">
-      <div>
-        <div class="exp-role">Remote Research Associate</div>
-        <div class="exp-org">Stanford Graduate School of Business · Remote / India</div>
-        <ul class="exp-buls">
-          <li>Shrinkflation pipeline — GPU-accelerated SKU matching with embedding retrieval and cross-encoder scoring</li>
-          <li>HealthifyMe — PSM with KD-trees, panel data reconstruction, full replication package</li>
-        </ul>
-      </div>
-      <div class="exp-yr">2025 — Present</div>
-    </div>
-    <div class="exp-row reveal">
-      <div>
-        <div class="exp-role">Quantitative Analyst</div>
-        <div class="exp-org">World Bank (Health Policy) & IIM Ahmedabad · CMHS</div>
-        <ul class="exp-buls">
-          <li>Analysis-ready datasets and reproducible reporting for World Bank HRH consortium</li>
-          <li>Statistical analyses — trend profiling, subgroup comparisons, robustness checks for policy briefs</li>
-          <li>Multi-stakeholder coordination translating policy questions into measurable KPIs</li>
-        </ul>
-      </div>
-      <div class="exp-yr">2025 — Present</div>
-    </div>
-    <div class="exp-row reveal">
-      <div>
-        <div class="exp-role">Research Associate</div>
-        <div class="exp-org">IIM Ahmedabad · Centre for Management of Health Services</div>
-        <ul class="exp-buls">
-          <li>Empirical research and policy analytics across HRH, maternal health, and health systems projects</li>
-          <li>Survey design, field protocols, reproducible scripts for external stakeholders</li>
-        </ul>
-      </div>
-      <div class="exp-yr">2024 — 2025</div>
-    </div>
-    <div class="exp-row reveal">
-      <div>
-        <div class="exp-role">Remote Research Associate</div>
-        <div class="exp-org">Univ. of Missouri · Notre Dame · Harvard Business School</div>
-        <ul class="exp-buls">
-          <li>Debt collection DiD · model diversity experiment · ad transparency geocoding pipeline</li>
-        </ul>
-      </div>
-      <div class="exp-yr">2024</div>
+    <div class="creds-row reveal" style="margin-top:1px">
+      <div class="cred"><div class="cred-n">GATE Economics — AIR 124</div><div class="cred-b">National Rank · India</div></div>
+      <div class="cred"><div class="cred-n">UGC-NET — 99th pct</div><div class="cred-b">Economics · National Exam</div></div>
+      <div class="cred"><div class="cred-n">Don Lavoie Fellow</div><div class="cred-b">Mercatus Center</div></div>
+      <div class="cred"><div class="cred-n">M.S. Economics · 9.80/10</div><div class="cred-b">IISER Bhopal</div></div>
     </div>
   </div>
 </section>
-
-<!-- SKILLS -->
-<section class="section" id="skills" style="background:var(--cream2)">
-  <div class="section-inner">
-    <div class="sec-header reveal">
-      <span class="sec-num">06</span>
-      <h2 class="sec-title">Skills & <em>Credentials</em></h2>
-      <span class="sec-line"></span>
-    </div>
-    <div class="skills-block reveal">
-      <div class="skill-cell"><div class="skill-label">Languages</div><div class="skill-pills"><span class="sp">Python</span><span class="sp">R</span><span class="sp">Stata</span><span class="sp">LaTeX</span></div></div>
-      <div class="skill-cell"><div class="skill-label">ML / Statistics</div><div class="skill-pills"><span class="sp">XGBoost</span><span class="sp">scikit-learn</span><span class="sp">DiD</span><span class="sp">PSM</span><span class="sp">IV</span><span class="sp">Embeddings</span></div></div>
-      <div class="skill-cell"><div class="skill-label">Data Engineering</div><div class="skill-pills"><span class="sp">pandas</span><span class="sp">NumPy</span><span class="sp">Panel Data</span><span class="sp">GCP</span><span class="sp">Databricks</span></div></div>
-      <div class="skill-cell"><div class="skill-label">Deep Learning</div><div class="skill-pills"><span class="sp">PyTorch</span><span class="sp">HuggingFace PEFT</span><span class="sp">LoRA</span><span class="sp">OpenAI API</span></div></div>
-    </div>
-    <div class="creds-grid reveal">
-      <div class="cred-cell"><div class="cred-n">GATE Economics — AIR 124</div><div class="cred-b">National Rank · India</div></div>
-      <div class="cred-cell"><div class="cred-n">UGC-NET — 99th percentile</div><div class="cred-b">Economics · National Exam</div></div>
-      <div class="cred-cell"><div class="cred-n">Don Lavoie Fellow</div><div class="cred-b">Mercatus Center</div></div>
-      <div class="cred-cell"><div class="cred-n">M.S. Economics · 9.80/10</div><div class="cred-b">IISER Bhopal</div></div>
+<section class="sec" id="now">
+  <div class="sec-inner">
+    <div class="sec-head reveal"><span class="sec-num">// 07</span><h2 class="sec-title">current_processes<span class="hl">.running()</span></h2><span class="sec-rule"></span></div>
+    <div class="now-grid reveal">
+      <div class="now-card"><div class="now-n">PID 001 · ACTIVE</div><div class="now-t">World Bank HRH Project</div><div class="now-d">Multi-state health systems analysis across <span class="hl">seven Indian states</span>. Reproducible reporting pipeline for consortium deliverables at IIMA.</div></div>
+      <div class="now-card"><div class="now-n">PID 002 · ACTIVE</div><div class="now-t">LLM Demand Estimation</div><div class="now-d">Replicating Kevin Lee's paper — <span class="hl">LoRA fine-tuning</span> + IV price estimation + interpretability pipeline under faculty supervision.</div></div>
+      <div class="now-card"><div class="now-n">PID 003 · SCHEDULED</div><div class="now-t">PhD Applications — Fall 2027</div><div class="now-d">Targeting <span class="hl">Quant Marketing &amp; Business Economics</span>. Stanford GSB, Chicago Booth, Michigan Ross, and others.</div></div>
     </div>
   </div>
 </section>
-
-<!-- CURRENTLY -->
-<section class="section" id="now">
-  <div class="section-inner">
-    <div class="sec-header reveal">
-      <span class="sec-num">07</span>
-      <h2 class="sec-title">Currently <em>Working On</em></h2>
-      <span class="sec-line"></span>
-    </div>
-    <div class="now-cards">
-      <div class="now-card reveal"><div class="now-n">01 / Active</div><div class="now-t">World Bank HRH Project</div><div class="now-d">Multi-state health systems analysis across seven Indian states. Consulting and advising states for developing a solid implementable HRH policies for Heathcare sectors.</div></div>
-      <div class="now-card reveal reveal-delay-1"><div class="now-n">02 / Active</div><div class="now-t">LLM Demand Estimation</div><div class="now-d">LoRA fine-tuning + IV price estimation + interpretability pipeline for predicting demand for new products introduced in markets.</div></div>
-      <div class="now-card reveal reveal-delay-2"><div class="now-n">03 / Planning</div><div class="now-t">Trends in Historic Marriage Markets </div><div class="now-d">Preparing a historic trend dataset from archives and doing trend analysis and preference change analysis</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
 <section id="contact">
-  <div class="contact-pre">Get in touch</div>
-  <h2 class="contact-h reveal">Let's talk<br><em>research</em></h2>
-  <p class="contact-sub reveal">shanchhithsingh@gmail.com · Ahmedabad, India</p>
-  <div class="contact-row reveal">
-    <a href="mailto:shanchhithsingh@gmail.com" class="clink">✉ Email</a>
-    <a href="https://github.com/Shanchhith" class="clink" target="_blank">GitHub ↗</a>
-    <a href="https://www.linkedin.com/in/shanchhith" class="clink" target="_blank">LinkedIn ↗</a>
-    <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" class="clink" target="_blank">Google Scholar ↗</a>
-    <a href="https://shanchhith.github.io/cv.pdf" class="clink">CV ↓</a>
+  <div class="contact-term reveal">
+    <div style="margin-bottom:1rem;color:var(--fg3);font-size:.62rem;letter-spacing:.1em;border-bottom:1px solid var(--border);padding-bottom:.75rem">// contact.sh — initiating connection</div>
+    <div class="contact-line"><span class="prompt" style="font-size:.72rem">ssn@research ~ $</span> <span style="color:var(--fg2)">whoami</span></div>
+    <div class="contact-line" style="padding-left:1rem;margin-top:.3rem"><span class="hl">Shanchhith Singh Nayak</span> — Quantitative Researcher</div>
+    <div class="contact-line" style="padding-left:1rem"><span class="hl2">shanchhithsingh@gmail.com</span> · Ahmedabad, India</div>
+    <div style="margin-top:1rem"><span class="prompt" style="font-size:.72rem">ssn@research ~ $</span> <span style="color:var(--fg2)">echo $STATUS</span></div>
+    <div class="contact-line" style="padding-left:1rem;margin-top:.3rem">Open to research roles, pre-docs, and PhD enquiries. <span class="hl">Will relocate.</span></div>
+    <div style="margin-top:1rem"><span class="prompt" style="font-size:.72rem">ssn@research ~ $</span> <span class="blink-cur"></span></div>
   </div>
-  <p class="footer-txt">© 2025 Shanchhith Singh Nayak · Built with care</p>
+  <div class="c-links reveal">
+    <a href="mailto:shanchhithsingh@gmail.com" class="c-lnk">email</a>
+    <a href="https://github.com/Shanchhith" class="c-lnk" target="_blank">github</a>
+    <a href="https://www.linkedin.com/in/shanchhith" class="c-lnk" target="_blank">linkedin</a>
+    <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" class="c-lnk" target="_blank">scholar</a>
+    <a href="https://shanchhith.github.io/cv.pdf" class="c-lnk">cv.pdf</a>
+  </div>
+  <p class="footer reveal">// 2025 shanchhith_singh_nayak · built from scratch</p>
 </section>
-
 <script>
-// Cursor
 const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop)})();
-document.querySelectorAll('a,.proj-row,.int-card,.now-card,.chip,.sp,.stat-card').forEach(el=>{
+document.querySelectorAll('a,.proj,.int-card,.now-card,.chip-row,.pill,.stat-cell,.btn,.soc,.c-lnk').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('cur-grow'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-grow'));
 });
-
-// Nav scroll
-const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
-  nav.classList.toggle('scrolled',window.scrollY>60);
-  // Progress bar
   const h=document.documentElement.scrollHeight-window.innerHeight;
   document.getElementById('progress').style.width=(window.scrollY/h*100)+'%';
 });
-
-// Scroll reveal
 const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}
-  });
-},{threshold:0.1});
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+},{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// Smooth counter animation for stat cards
-function animCount(el,target,suffix){
-  const isFloat=target%1!==0;
-  let start=0,dur=1200,startTime=null;
-  function step(ts){
-    if(!startTime)startTime=ts;
-    const p=Math.min((ts-startTime)/dur,1);
-    const ease=1-Math.pow(1-p,3);
-    const val=isFloat?(start+(target-start)*ease).toFixed(1):(Math.round(start+(target-start)*ease));
-    el.textContent=val+(suffix||'');
-    if(p<1)requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-const statObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const el=e.target.querySelector('.sn');
-      const raw=el.textContent;
-      if(raw==='AIR 124'){return}
-      const num=parseFloat(raw);
-      const suffix=raw.replace(/[\d.]/g,'');
-      if(!isNaN(num))animCount(el,num,suffix);
-      statObs.unobserve(e.target);
-    }
+const canvas=document.createElement('canvas');
+canvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.018';
+document.body.prepend(canvas);
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+const cols=Math.floor(window.innerWidth/20);
+const drops=Array(cols).fill(1);
+const chars='01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ';
+function rain(){
+  ctx.fillStyle='rgba(5,5,8,0.05)';ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='#00ff41';ctx.font='14px JetBrains Mono,monospace';
+  drops.forEach((y,i)=>{
+    const ch=chars[Math.floor(Math.random()*chars.length)];
+    ctx.fillText(ch,i*20,y*20);
+    if(y*20>canvas.height&&Math.random()>.975)drops[i]=0;
+    drops[i]++;
   });
-},{threshold:0.5});
-document.querySelectorAll('.stat-card').forEach(el=>statObs.observe(el));
+}
+setInterval(rain,55);
 </script>
 </body>
 </html>
