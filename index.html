@@ -1,418 +1,1765 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shanchhith Singh Nayak</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shanchhith Singh Nayak — Quantitative Researcher</title>
 <link rel="icon" type="image/jpeg" href="IMG_8828.JPG">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,300;0,400;0,700;1,300&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#050508;--bg2:#0a0a0f;--bg3:#0f0f18;--panel:#111118;
-  --border:#1a1a2e;--border2:#252540;
-  --green:#00ff41;--green2:#00cc33;--green3:rgba(0,255,65,.12);
-  --cyan:#00d4ff;--cyan2:rgba(0,212,255,.15);
-  --purple:#9d4edd;--red:#ff4444;--yellow:#ffcc00;
-  --fg:#e0e0e0;--fg2:#888899;--fg3:#444455;
-  --mono:'JetBrains Mono',monospace;--mono2:'Share Tech Mono',monospace;
-}
-html{font-size:15px;scroll-behavior:smooth}
-body{background:var(--bg);color:var(--fg);font-family:var(--mono);overflow-x:hidden;cursor:none}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px);pointer-events:none;z-index:9990}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");pointer-events:none;z-index:9989}
-#cur{position:fixed;width:4px;height:18px;background:var(--green);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);animation:blink .8s step-end infinite}
-#cur-r{position:fixed;width:24px;height:24px;border:1px solid rgba(0,255,65,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .1s ease-out}
-body.cur-grow #cur{width:6px;height:22px;background:var(--cyan)}
-body.cur-grow #cur-r{width:36px;height:36px;border-color:rgba(0,212,255,.5)}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-#progress{position:fixed;top:0;left:0;height:1px;background:linear-gradient(90deg,var(--green),var(--cyan));z-index:600;width:0%;box-shadow:0 0 8px var(--green)}
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,8,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
-.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
-.nav-logo-img{width:32px;height:32px;border-radius:50%;border:1px solid var(--green);object-fit:cover;object-position:top center;filter:grayscale(20%) brightness(1.1);box-shadow:0 0 8px rgba(0,255,65,.3)}
-.nav-logo-txt{font-size:.7rem;color:var(--green);letter-spacing:.15em;text-transform:uppercase}
-.nav-logo-txt span{color:var(--fg2)}
-.nav-links{display:flex;gap:0;list-style:none}
-.nav-links li a{font-size:.62rem;color:var(--fg3);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .9rem;border-left:1px solid var(--border);transition:color .2s,background .2s;display:block}
-.nav-links li:last-child a{border-right:1px solid var(--border)}
-.nav-links li a:hover{color:var(--green);background:var(--green3)}
-.nav-links li a::before{content:'./';color:var(--fg3);transition:color .2s}
-.nav-links li a:hover::before{color:var(--green)}
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 400px;align-items:center;gap:3rem;padding:6rem 3rem 3rem;position:relative;overflow:hidden}
-.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 80% 50%,rgba(0,255,65,.04) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(0,212,255,.03) 0%,transparent 50%)}
-.terminal{background:var(--bg2);border:1px solid var(--border2);box-shadow:0 0 40px rgba(0,255,65,.05),inset 0 0 30px rgba(0,0,0,.5)}
-.term-bar{background:var(--panel);border-bottom:1px solid var(--border2);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem}
-.term-dot{width:10px;height:10px;border-radius:50%}
-.term-dot.r{background:#ff5f57}.term-dot.y{background:#ffbd2e}.term-dot.g{background:#28c840}
-.term-title{font-size:.6rem;color:var(--fg3);letter-spacing:.1em;margin-left:auto;margin-right:auto}
-.term-body{padding:1.5rem;font-size:.78rem;line-height:1.8}
-.prompt{color:var(--green);font-size:.72rem}.prompt-path{color:var(--cyan)}.prompt-sym{color:var(--purple)}
-.cmd{color:var(--fg)}.out-key{color:var(--cyan)}.out-val{color:var(--fg2)}.out-str{color:var(--yellow)}.out-num{color:var(--purple)}.out-bool{color:var(--green)}
-.blink-cur{display:inline-block;width:8px;height:14px;background:var(--green);animation:blink .8s step-end infinite;vertical-align:middle;margin-left:2px}
-.hero-right{display:flex;flex-direction:column;gap:1.5rem;opacity:0;animation:fadeUp .8s .5s both}
-.photo-wrap{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--border2)}
-.photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(30%) contrast(1.1) brightness(.9)}
-.photo-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(5,5,8,.95) 100%);pointer-events:none}
-.photo-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,255,65,.025) 3px,rgba(0,255,65,.025) 4px);pointer-events:none}
-.photo-wrap::before,.photo-wrap::after{content:'';position:absolute;width:16px;height:16px;z-index:2}
-.photo-wrap::before{top:8px;left:8px;border-top:2px solid var(--green);border-left:2px solid var(--green)}
-.photo-wrap::after{bottom:8px;right:8px;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan)}
-.photo-caption{position:absolute;bottom:12px;left:12px;right:12px;z-index:2;font-size:.6rem;color:var(--green);letter-spacing:.1em}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.stat-cell{background:var(--panel);padding:.85rem;border-bottom:2px solid transparent;transition:border-color .2s,background .2s}
-.stat-cell:hover{border-color:var(--green);background:var(--bg3)}
-.stat-cell .sv{font-family:var(--mono2);font-size:1.3rem;color:var(--green);line-height:1}
-.stat-cell .sl{font-size:.55rem;color:var(--fg3);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
-.hero-left{opacity:0;animation:fadeUp .8s .15s both}
-.hero-tag{font-size:.65rem;color:var(--green);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
-.hero-tag::before{content:'[';color:var(--fg3)}.hero-tag::after{content:']';color:var(--fg3)}
-.hero-name{font-family:var(--mono2);font-size:clamp(2.2rem,4.5vw,4rem);line-height:1;letter-spacing:-.01em;margin-bottom:.5rem;color:var(--fg)}
-.hero-name .hn1{color:var(--fg2);font-size:.65em}
-.hero-name .hn2{color:var(--green);display:block;text-shadow:0 0 20px rgba(0,255,65,.4)}
-.hero-sub{font-size:.75rem;color:var(--fg2);margin-bottom:2rem;line-height:1.6;letter-spacing:.04em}
-.hero-sub .pipe{color:var(--border2);margin:0 .5rem}
-.hero-desc{font-size:.8rem;color:var(--fg2);line-height:1.9;max-width:520px;margin-bottom:2rem;border-left:2px solid var(--border2);padding-left:1rem}
-.hero-desc .hl{color:var(--cyan)}
-.cta-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2rem}
-.btn{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.25rem;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem;border:1px solid}
-.btn-green{background:transparent;color:var(--green);border-color:var(--green)}
-.btn-green:hover{background:var(--green);color:var(--bg);box-shadow:0 0 16px rgba(0,255,65,.3)}
-.btn-cyan{background:transparent;color:var(--cyan);border-color:rgba(0,212,255,.4)}
-.btn-cyan:hover{background:rgba(0,212,255,.1);box-shadow:0 0 16px rgba(0,212,255,.2)}
-.btn-ghost{background:transparent;color:var(--fg3);border-color:var(--border2)}
-.btn-ghost:hover{color:var(--fg);border-color:var(--fg3)}
-.social-row{display:flex;gap:.5rem;flex-wrap:wrap}
-.soc{font-size:.6rem;color:var(--fg3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .75rem;border:1px solid var(--border);display:flex;align-items:center;gap:.35rem;transition:color .2s,border-color .2s,background .2s}
-.soc:hover{color:var(--green);border-color:rgba(0,255,65,.3);background:var(--green3)}
-.soc svg{width:11px;height:11px;fill:currentColor}
-.sec{padding:6rem 3rem;border-top:1px solid var(--border)}
-.sec-inner{max-width:1120px;margin:0 auto}
-.sec-head{display:flex;align-items:center;gap:1.5rem;margin-bottom:3.5rem}
-.sec-num{font-size:.6rem;color:var(--green);letter-spacing:.15em}
-.sec-title{font-family:var(--mono2);font-size:clamp(1.3rem,2.5vw,2rem);color:var(--fg)}
-.sec-title .hl{color:var(--green)}
-.sec-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
-#about{background:var(--bg2)}
-.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start}
-.about-txt p{color:var(--fg2);line-height:1.9;font-size:.82rem;margin-bottom:.9rem}
-.about-txt .hl{color:var(--cyan)}
-.chip-list{display:flex;flex-direction:column;gap:0}
-.chip-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem .9rem;border:1px solid var(--border);margin-top:-1px;transition:background .2s,border-color .2s}
-.chip-row:hover{background:var(--green3);border-color:rgba(0,255,65,.2)}
-.chip-row:hover .ck{color:var(--green)}
-.ck{font-size:.58rem;color:var(--fg3);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
-.cv{font-size:.78rem;color:var(--fg);text-align:right;line-height:1.4}
-#interests{background:var(--bg)}
-.int-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-.int-card{background:var(--bg);padding:1.75rem 1.5rem;position:relative;overflow:hidden;cursor:default;transition:background .2s}
-.int-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--green);transition:width .4s}
-.int-card:hover{background:var(--bg2)}
-.int-card:hover::after{width:100%}
-.int-card:hover .in{color:var(--green)}
-.in{font-size:.58rem;color:var(--fg3);letter-spacing:.15em;margin-bottom:.9rem;transition:color .2s}
-.it{font-size:.88rem;color:var(--fg);margin-bottom:.4rem;line-height:1.3}
-.is{font-size:.65rem;color:var(--fg3);line-height:1.65;font-family:var(--mono2)}
-#projects{background:var(--bg2)}
-.proj-list{display:flex;flex-direction:column}
-.proj{border-top:1px solid var(--border);padding:2rem 0;display:grid;grid-template-columns:3rem 1fr 1fr 5.5rem;gap:2rem;align-items:start;position:relative;transition:background .2s;cursor:default}
-.proj:last-child{border-bottom:1px solid var(--border)}
-.proj::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--green3),transparent);transition:width .4s}
-.proj:hover::before{width:100%}
-.proj:hover .proj-t{color:var(--green)}
-.proj-n{font-size:.6rem;color:var(--fg3);letter-spacing:.1em;padding-top:.2rem;position:relative;z-index:1}
-.proj-t{font-size:.9rem;color:var(--fg);font-weight:400;margin-bottom:.35rem;transition:color .2s;line-height:1.3;position:relative;z-index:1}
-.proj-d{font-size:.77rem;color:var(--fg2);line-height:1.7;position:relative;z-index:1}
-.proj-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem;position:relative;z-index:1}
-.ptag{font-size:.58rem;color:var(--fg3);border:1px solid var(--border2);padding:.12rem .4rem;letter-spacing:.04em;transition:all .2s}
-.proj:hover .ptag{border-color:rgba(0,255,65,.2);color:var(--green2)}
-.proj-m{font-size:.65rem;color:var(--fg2);line-height:1.7;position:relative;z-index:1}
-.proj-m b{display:block;font-size:.56rem;color:var(--fg3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;font-weight:400}
-.proj-a{font-size:.6rem;color:var(--cyan);text-align:right;position:relative;z-index:1;letter-spacing:.04em;line-height:1.5}
-#papers{background:var(--bg)}
-.paper-list{display:flex;flex-direction:column}
-.paper{border-top:1px solid var(--border);padding:1.75rem 0;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;cursor:default;transition:background .2s}
-.paper:last-child{border-bottom:1px solid var(--border)}
-.paper:hover .paper-t{color:var(--green)}
-.paper-t{font-size:.88rem;color:var(--fg);margin-bottom:.3rem;transition:color .2s;line-height:1.4}
-.paper-v{font-size:.62rem;color:var(--fg3);letter-spacing:.08em}
-.badge{font-size:.58rem;padding:.2rem .6rem;letter-spacing:.08em;white-space:nowrap;border:1px solid}
-.badge-g{color:var(--green);border-color:rgba(0,255,65,.3);background:var(--green3)}
-.badge-c{color:var(--cyan);border-color:rgba(0,212,255,.3);background:var(--cyan2)}
-#experience{background:var(--bg2)}
-.exp-list{display:flex;flex-direction:column}
-.exp{border-top:1px solid var(--border);padding:2rem 0;display:grid;grid-template-columns:1fr auto;gap:2rem}
-.exp:last-child{border-bottom:1px solid var(--border)}
-.exp-role{font-size:.88rem;color:var(--fg);font-weight:400;margin-bottom:.15rem}
-.exp-org{font-size:.72rem;color:var(--fg3);margin-bottom:.75rem;letter-spacing:.04em}
-.exp-org .hl{color:var(--cyan)}
-.exp-buls{list-style:none;display:flex;flex-direction:column;gap:.3rem}
-.exp-buls li{font-size:.75rem;color:var(--fg2);padding-left:1rem;position:relative;line-height:1.65}
-.exp-buls li::before{content:'>';position:absolute;left:0;color:var(--green);font-size:.7rem}
-.exp-yr{font-size:.6rem;color:var(--fg3);white-space:nowrap;text-align:right;letter-spacing:.06em;padding-top:.2rem}
-#skills{background:var(--bg)}
-.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-bottom:3rem}
-.skill-cell{background:var(--bg);padding:1.5rem}
-.skill-lbl{font-size:.58rem;color:var(--green);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
-.skill-lbl::before{content:'#';color:var(--fg3)}
-.pills{display:flex;flex-wrap:wrap;gap:.35rem}
-.pill{font-size:.65rem;color:var(--fg3);border:1px solid var(--border2);padding:.22rem .55rem;transition:all .2s;cursor:default}
-.pill:hover{color:var(--green);border-color:rgba(0,255,65,.3);background:var(--green3)}
-.creds-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
-.cred{background:var(--bg2);padding:1.25rem;transition:background .2s}
-.cred:hover{background:var(--bg3)}
-.cred-n{font-size:.82rem;color:var(--fg);margin-bottom:.25rem;line-height:1.3}
-.cred-b{font-size:.58rem;color:var(--fg3);letter-spacing:.08em}
-#now{background:var(--bg2)}
-.now-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-.now-card{background:var(--bg2);padding:1.75rem;position:relative;overflow:hidden;cursor:default;transition:background .2s}
-.now-card:hover{background:var(--bg3)}
-.now-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.now-card:hover::before{transform:scaleX(1)}
-.now-n{font-size:.58rem;color:var(--fg3);letter-spacing:.12em;margin-bottom:.85rem}
-.now-t{font-size:.88rem;color:var(--fg);margin-bottom:.5rem;line-height:1.3}
-.now-d{font-size:.75rem;color:var(--fg2);line-height:1.65}
-.now-d .hl{color:var(--cyan)}
-#contact{background:var(--bg);padding:8rem 3rem;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
-#contact::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(0,255,65,.04) 0%,transparent 70%);pointer-events:none}
-.contact-term{background:var(--bg2);border:1px solid var(--border2);padding:2.5rem;max-width:560px;width:100%;text-align:left;margin-bottom:3rem}
-.contact-line{font-size:.75rem;color:var(--fg2);margin-bottom:.5rem;line-height:1.6}
-.contact-line .hl{color:var(--green)}.contact-line .hl2{color:var(--cyan)}
-.c-links{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:4rem}
-.c-lnk{font-size:.6rem;color:var(--fg2);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border2);padding:.6rem 1.2rem;display:flex;align-items:center;gap:.4rem;transition:all .2s}
-.c-lnk:hover{color:var(--green);border-color:rgba(0,255,65,.3);background:var(--green3)}
-.footer{font-size:.58rem;color:var(--fg3);letter-spacing:.1em}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-@media(max-width:1000px){
-  #hero{grid-template-columns:1fr;padding:5rem 1.5rem 3rem}
-  .hero-right{order:-1}
-  .photo-wrap{max-height:280px;aspect-ratio:unset}
-  .sec{padding:4rem 1.5rem}
-  .about-grid{grid-template-columns:1fr;gap:2.5rem}
-  .int-grid{grid-template-columns:1fr 1fr}
-  .proj{grid-template-columns:3rem 1fr;gap:1rem}
-  .proj-m,.proj-a{display:none}
-  .paper{grid-template-columns:1fr}
-  .skill-grid{grid-template-columns:1fr}
-  .creds-row{grid-template-columns:1fr 1fr}
-  .now-grid{grid-template-columns:1fr}
-}
-@media(max-width:600px){
-  nav{padding:.8rem 1rem}
-  .nav-links{display:none}
-  .int-grid{grid-template-columns:1fr}
-  .creds-row{grid-template-columns:1fr}
-  #contact{padding:4rem 1rem}
-}
+  :root{
+    --green-deep: #2A3F33;
+    --green-mid: #3D5A47;
+    --green-light: #5C7A65;
+    --green-pale: #8FA593;
+    --cream-base: #EFE6D2;
+    --cream-light: #F4ECD9;
+    --cream-warm: #E8DEC3;
+    --cream-paper: #F8F1DE;
+    --kraft: #C9B084;
+    --kraft-dark: #A88E5F;
+    --copper: #B5651D;
+    --copper-light: #C97B3A;
+    --copper-pale: #E0B888;
+    --brown-deep: #2A1F18;
+    --brown-mid: #4A3829;
+    --brown-light: #7A5E48;
+    --stamp-red: #8B3A2F;
+    --off-white: #FAF5E6;
+    --rule: #B5A085;
+    --rule-soft: #D4C5A8;
+    --shadow: 0 30px 80px -40px rgba(42,31,24,.5);
+    --shadow-soft: 0 6px 24px -12px rgba(42,31,24,.3);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background: var(--cream-base);
+    color: var(--brown-deep);
+    font-family: 'Karla', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* Scroll progress */
+  .scroll-progress{
+    position:fixed;top:0;left:0;right:0;
+    height:2px;
+    background: rgba(181,101,29,.15);
+    z-index:200;
+  }
+  .scroll-progress::after{
+    content:"";
+    position:absolute;left:0;top:0;bottom:0;
+    width: var(--prog, 0%);
+    background: var(--copper);
+    transition: width .1s linear;
+  }
+
+  /* Paper grain */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:100;
+    opacity:.45;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.12 0 0 0 0 0.09 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:99;
+    opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0.7 0 0 0 0 0.6 0 0 0 0 0.4 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{
+    position:relative;
+    z-index:2;
+    max-width:1240px;
+    margin:0 auto;
+    padding: 0 32px;
+  }
+  @media(max-width:680px){.wrap{padding:0 20px}}
+
+  /* ============ NAV ============ */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background: var(--green-deep);
+    border-bottom: 1px solid var(--brown-deep);
+    color: var(--cream-light);
+  }
+  .nav-inner{
+    max-width:1240px;
+    margin:0 auto;
+    padding: 14px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  @media(max-width:680px){.nav-inner{padding:12px 20px}}
+
+  .nav-logo{
+    display:flex;align-items:center;gap:12px;
+    text-decoration:none;
+  }
+  .nav-logo img{
+    width:34px;height:34px;border-radius:50%;
+    object-fit:cover;object-position:top center;
+    border:1px solid var(--copper-pale);
+  }
+  .nav-logo .name{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:17px;
+    color:var(--cream-light);
+    letter-spacing:.01em;
+  }
+  .nav-logo .name em{
+    font-family:'DM Mono',monospace;
+    font-style:normal;
+    font-size:10px;
+    color:var(--copper-pale);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    margin-left:8px;
+  }
+
+  .nav-links{display:flex;gap:24px;font-size:12px;font-weight:500;letter-spacing:.02em;list-style:none}
+  .nav-links a{
+    color:var(--cream-warm);
+    text-decoration:none;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--copper-pale)}
+  @media(max-width:780px){.nav-links{display:none}}
+
+  /* ============ HERO ============ */
+  header.hero{
+    position:relative;
+    padding: 70px 0 90px;
+    overflow:hidden;
+  }
+  .hero-flag{
+    display:inline-flex;
+    align-items:center;gap:14px;
+    padding:8px 18px;
+    background:var(--green-deep);
+    color:var(--cream-light);
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    margin-bottom:36px;
+  }
+  .hero-flag .star{color:var(--copper-pale)}
+
+  h1.title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size: clamp(56px, 11vw, 152px);
+    line-height: .88;
+    letter-spacing: -.025em;
+    color: var(--brown-deep);
+    margin-bottom: 28px;
+  }
+  h1.title em{
+    font-style: italic;
+    font-weight: 400;
+    color: var(--green-mid);
+  }
+
+  .role-line{
+    font-family:'DM Mono',monospace;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform:uppercase;
+    color:var(--copper);
+    margin-bottom: 32px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .role-line .dot{
+    width:5px;height:5px;border-radius:50%;
+    background:var(--copper);opacity:.5;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap:64px;
+    align-items:start;
+    margin-top:24px;
+  }
+  @media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+
+  .lede{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height:1.45;
+    color: var(--brown-mid);
+    max-width:680px;
+    letter-spacing:-.005em;
+    margin-bottom: 32px;
+  }
+  .lede em{font-style:italic;color:var(--green-mid);font-weight:400}
+  .lede .drop{
+    float:left;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size: 76px;
+    line-height:.85;
+    color:var(--copper);
+    padding-right:12px;
+    padding-top:6px;
+  }
+
+  /* CTA buttons */
+  .cta-row{
+    display:flex;flex-wrap:wrap;gap:10px;
+    margin-bottom:28px;
+  }
+  .btn{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    padding:11px 20px;
+    text-decoration:none;
+    transition:all .2s;
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid;
+    border-radius:2px;
+    cursor:pointer;
+    font-weight:500;
+  }
+  .btn-primary{
+    background:var(--green-deep);
+    color:var(--cream-light);
+    border-color:var(--green-deep);
+  }
+  .btn-primary:hover{background:var(--brown-deep);border-color:var(--brown-deep)}
+  .btn-ghost{
+    background:transparent;
+    color:var(--brown-deep);
+    border-color:var(--rule);
+  }
+  .btn-ghost:hover{border-color:var(--copper);color:var(--copper)}
+  .btn-copper{
+    background:transparent;
+    color:var(--copper);
+    border-color:var(--copper);
+  }
+  .btn-copper:hover{background:var(--copper);color:var(--cream-light)}
+  .btn .arr{display:inline-block;transition:transform .2s}
+  .btn:hover .arr{transform:translateX(3px)}
+
+  /* Socials */
+  .socials{
+    display:flex;gap:8px;flex-wrap:wrap;
+  }
+  .soc{
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--brown-mid);
+    text-decoration:none;
+    padding:7px 14px;
+    border:1px dashed var(--rule);
+    transition:all .2s;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .soc:hover{color:var(--green-deep);border-color:var(--copper);border-style:solid}
+  .soc svg{width:11px;height:11px;fill:currentColor}
+
+  /* Hero right column */
+  .hero-right{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .photo-wrap{
+    position:relative;
+    width:100%;
+    aspect-ratio: 3/4;
+    overflow:hidden;
+    background:var(--cream-paper);
+    border:1px solid var(--rule-soft);
+    box-shadow: var(--shadow);
+  }
+  .photo-wrap::before{
+    content:"";
+    position:absolute;inset:8px;
+    border:1px dashed var(--rule);
+    z-index:1;
+    pointer-events:none;
+  }
+  .photo-wrap img{
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:top center;
+    filter: sepia(.15) saturate(.92) contrast(1.02);
+  }
+  .photo-caption{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    background:linear-gradient(to top, rgba(42,31,24,.85), transparent);
+    padding:28px 22px 18px;
+    color:var(--cream-light);
+    font-family:'DM Mono',monospace;
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    z-index:2;
+  }
+  .photo-caption .lab{color:var(--copper-pale);margin-bottom:4px;display:block}
+
+  /* Specimen ticket — like Subko railway sticker */
+  .specimen{
+    background:var(--cream-paper);
+    border:1px dashed var(--rule);
+    padding:18px 20px;
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    color:var(--brown-mid);
+    letter-spacing:.04em;
+    line-height:1.6;
+    position:relative;
+  }
+  .specimen::before{
+    content:"PROFILE · 2026";
+    position:absolute;
+    top:-9px;left:18px;
+    background:var(--cream-base);
+    padding:0 10px;
+    color:var(--stamp-red);
+    font-size:9px;
+    letter-spacing:.2em;
+    font-weight:500;
+  }
+  .specimen .row{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+    border-bottom:1px dotted var(--rule-soft);
+    gap:14px;
+  }
+  .specimen .row:last-child{border-bottom:none}
+  .specimen .row .lab{
+    color:var(--brown-light);
+    text-transform:uppercase;
+    font-size:9px;
+    letter-spacing:.15em;
+  }
+  .specimen .row .val{color:var(--brown-deep);font-weight:500;text-align:right}
+
+  /* ============ SECTION HEAD ============ */
+  .section-head{
+    display:grid;
+    grid-template-columns: auto 1fr;
+    align-items:end;
+    gap:50px;
+    margin: 80px 0 36px;
+    padding-bottom:22px;
+    border-bottom: 1px solid var(--rule);
+    position:relative;
+  }
+  @media(max-width:880px){.section-head{grid-template-columns:1fr;gap:14px}}
+  .section-num{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:108px;
+    line-height:.85;
+    color:var(--copper);
+    letter-spacing:-.04em;
+  }
+  @media(max-width:880px){.section-num{font-size:72px}}
+  .section-head-text{flex:1}
+  .section-head .h-kicker{
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--brown-light);
+    margin-bottom:12px;
+  }
+  .section-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height:.95;
+    letter-spacing:-.02em;
+    color:var(--brown-deep);
+  }
+  .section-head h2 em{font-style:italic;color:var(--green-mid);font-weight:400}
+  .section-head .h-right{
+    font-size:14px;line-height:1.65;color:var(--brown-mid);max-width:480px;margin-top:14px;
+  }
+
+  /* ============ ABOUT ============ */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  @media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:36px}}
+  .about-txt p{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size:21px;
+    line-height:1.55;
+    color:var(--brown-mid);
+    margin-bottom:18px;
+    letter-spacing:-.005em;
+  }
+  .about-txt p em{font-style:italic;color:var(--green-mid);font-weight:400}
+  .about-txt p strong{color:var(--brown-deep);font-weight:500;font-style:normal}
+
+  .meta-card{
+    background:var(--cream-paper);
+    border:1px solid var(--rule-soft);
+    padding:0;
+    border-radius:2px;
+    overflow:hidden;
+    position:relative;
+  }
+  .meta-card::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.65 0 0 0 0 0.55 0 0 0 0 0.4 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nn)'/%3E%3C/svg%3E");
+    opacity:.5;mix-blend-mode:multiply;pointer-events:none;
+  }
+  .meta-strip{
+    background:var(--green-deep);
+    color:var(--cream-light);
+    padding:12px 22px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    position:relative;
+  }
+  .meta-strip::before, .meta-strip::after{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    background:var(--cream-base);
+    border-radius:50%;
+    top:50%;
+    transform:translateY(-50%);
+  }
+  .meta-strip::before{left:-7px}
+  .meta-strip::after{right:-7px}
+  .meta-strip .copper{color:var(--copper-pale)}
+
+  .meta-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 22px;
+    border-bottom:1px dashed var(--rule-soft);
+    position:relative;
+    z-index:1;
+    transition:background .2s;
+    gap:16px;
+  }
+  .meta-row:last-child{border-bottom:none}
+  .meta-row:hover{background:rgba(181,101,29,.04)}
+  .meta-row .lab{
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    color:var(--brown-light);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+  .meta-row .val{
+    font-family:'Cormorant Garamond',serif;
+    font-size:17px;
+    color:var(--brown-deep);
+    font-weight:500;
+    text-align:right;
+    letter-spacing:-.01em;
+  }
+  .meta-row .val em{color:var(--green-mid);font-style:italic;font-weight:400}
+
+  /* ============ INTERESTS — ticket cards ============ */
+  .int-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+  }
+  @media(max-width:980px){.int-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:680px){.int-grid{grid-template-columns:1fr}}
+
+  .int-card{
+    background:var(--cream-paper);
+    border:1px solid var(--rule-soft);
+    padding:0;
+    border-radius:2px;
+    position:relative;
+    transition: transform .3s, box-shadow .3s, border-color .3s;
+    overflow:hidden;
+  }
+  .int-card:hover{
+    transform:translateY(-3px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--copper);
+  }
+  .int-card::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.65 0 0 0 0 0.55 0 0 0 0 0.4 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nn)'/%3E%3C/svg%3E");
+    opacity:.5;mix-blend-mode:multiply;pointer-events:none;
+  }
+  .int-num-strip{
+    background:var(--green-deep);
+    color:var(--copper-pale);
+    padding:8px 18px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    display:flex;justify-content:space-between;
+    position:relative;
+  }
+  .int-num-strip::before, .int-num-strip::after{
+    content:"";
+    position:absolute;
+    width:12px;height:12px;
+    background:var(--cream-base);
+    border-radius:50%;
+    top:50%;
+    transform:translateY(-50%);
+  }
+  .int-num-strip::before{left:-6px}
+  .int-num-strip::after{right:-6px}
+  .int-body{padding:22px 22px 24px;position:relative;z-index:1}
+  .int-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:22px;
+    line-height:1.15;
+    color:var(--brown-deep);
+    margin-bottom:10px;
+    letter-spacing:-.01em;
+  }
+  .int-title em{color:var(--green-mid);font-style:italic;font-weight:400}
+  .int-desc{
+    font-size:13px;
+    line-height:1.55;
+    color:var(--brown-mid);
+  }
+
+  /* ============ PROJECTS — railway style list ============ */
+  .proj-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .proj-card{
+    background:var(--cream-paper);
+    border:1px solid var(--rule-soft);
+    border-radius:2px;
+    overflow:hidden;
+    transition: transform .3s, box-shadow .3s, border-color .3s;
+    position:relative;
+    cursor:pointer;
+  }
+  .proj-card::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.65 0 0 0 0 0.55 0 0 0 0 0.4 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nn)'/%3E%3C/svg%3E");
+    opacity:.4;mix-blend-mode:multiply;pointer-events:none;
+  }
+  .proj-card:hover{
+    transform:translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--brown-light);
+  }
+  .proj-strip{
+    background:var(--green-deep);
+    color:var(--cream-light);
+    padding:11px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    position:relative;
+    border-bottom:1px dashed var(--green-light);
+  }
+  .proj-strip::before, .proj-strip::after{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    background:var(--cream-base);
+    border-radius:50%;
+    top:50%;
+    transform:translateY(-50%);
+  }
+  .proj-strip::before{left:-7px}
+  .proj-strip::after{right:-7px}
+  .proj-strip .ser{color:var(--copper-pale);font-weight:500}
+  .proj-strip .affil{color:var(--cream-warm);opacity:.85}
+
+  .proj-body{
+    padding: 22px 28px 24px;
+    display:grid;
+    grid-template-columns: 1fr 220px;
+    gap:36px;
+    position:relative;
+    z-index:1;
+  }
+  @media(max-width:780px){.proj-body{grid-template-columns:1fr;gap:14px}}
+
+  .proj-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:24px;
+    line-height:1.15;
+    color:var(--brown-deep);
+    margin-bottom:10px;
+    letter-spacing:-.01em;
+  }
+  .proj-title em{color:var(--green-mid);font-style:italic;font-weight:400}
+  .proj-desc{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--brown-mid);
+    margin-bottom:14px;
+  }
+  .proj-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+  }
+  .ptag{
+    font-family:'DM Mono',monospace;
+    font-size:9px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    background:var(--kraft);
+    color:var(--brown-deep);
+    border-radius:2px;
+    font-weight:500;
+  }
+  .proj-aside{
+    border-left:1px dashed var(--rule);
+    padding-left:24px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  @media(max-width:780px){.proj-aside{border-left:none;border-top:1px dashed var(--rule);padding-left:0;padding-top:14px}}
+  .proj-aside .lab{
+    font-family:'DM Mono',monospace;
+    font-size:9px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--brown-light);
+    margin-bottom:2px;
+  }
+  .proj-aside .val{
+    font-family:'Cormorant Garamond',serif;
+    font-size:15px;
+    color:var(--brown-deep);
+    font-weight:500;
+    line-height:1.3;
+    letter-spacing:-.005em;
+  }
+  .proj-aside .val em{color:var(--green-mid);font-style:italic;font-weight:400}
+
+  /* ============ PAPERS ============ */
+  .paper-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .paper{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:24px;
+    align-items:center;
+    padding:24px 0;
+    border-top:1px solid var(--rule-soft);
+    transition:background .2s;
+  }
+  .paper:last-child{border-bottom:1px solid var(--rule-soft)}
+  .paper-t{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:22px;
+    color:var(--brown-deep);
+    line-height:1.25;
+    margin-bottom:6px;
+    letter-spacing:-.005em;
+  }
+  .paper-t em{color:var(--green-mid);font-style:italic;font-weight:400}
+  .paper-v{
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--brown-light);
+  }
+  .paper-badge{
+    font-family:'DM Mono',monospace;
+    font-size:9px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    background:var(--copper);
+    color:var(--cream-light);
+    border-radius:2px;
+    font-weight:500;
+    white-space:nowrap;
+  }
+
+  /* ============ EXPERIENCE ============ */
+  .exp-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .exp{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:36px;
+    padding:30px 0;
+    border-top:1px solid var(--rule-soft);
+  }
+  .exp:last-child{border-bottom:1px solid var(--rule-soft)}
+  @media(max-width:780px){.exp{grid-template-columns:1fr;gap:10px}}
+  .exp-role{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:24px;
+    color:var(--brown-deep);
+    line-height:1.2;
+    margin-bottom:4px;
+    letter-spacing:-.01em;
+  }
+  .exp-role em{color:var(--green-mid);font-style:italic;font-weight:400}
+  .exp-org{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--copper);
+    margin-bottom:14px;
+  }
+  .exp-org .sep{color:var(--brown-light);margin:0 6px;opacity:.6}
+  .exp-buls{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .exp-buls li{
+    font-size:14px;
+    line-height:1.55;
+    color:var(--brown-mid);
+    padding-left:18px;
+    position:relative;
+  }
+  .exp-buls li::before{
+    content:"—";
+    position:absolute;left:0;
+    color:var(--copper);
+    font-weight:500;
+  }
+  .exp-yr{
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--brown-light);
+    white-space:nowrap;
+    padding-top:6px;
+  }
+
+  /* ============ STACK + CREDS ============ */
+  .stack-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:18px;
+    margin-bottom:32px;
+  }
+  @media(max-width:680px){.stack-grid{grid-template-columns:1fr}}
+  .stack-cell{
+    background:var(--cream-paper);
+    border:1px solid var(--rule-soft);
+    border-radius:2px;
+    overflow:hidden;
+    position:relative;
+  }
+  .stack-cell::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.65 0 0 0 0 0.55 0 0 0 0 0.4 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nn)'/%3E%3C/svg%3E");
+    opacity:.4;mix-blend-mode:multiply;pointer-events:none;
+  }
+  .stack-lab{
+    background:var(--green-deep);
+    color:var(--copper-pale);
+    padding:9px 20px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    border-bottom:1px dashed var(--green-light);
+  }
+  .stack-pills{
+    padding:18px 20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    position:relative;z-index:1;
+  }
+  .pill{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:.05em;
+    padding:5px 11px;
+    background:var(--cream-warm);
+    color:var(--brown-deep);
+    border-radius:2px;
+    transition:background .2s, transform .2s;
+    border:1px solid transparent;
+  }
+  .pill:hover{
+    background:var(--copper);
+    color:var(--cream-light);
+    transform:translateY(-1px);
+  }
+
+  .creds-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:14px;
+  }
+  @media(max-width:880px){.creds-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.creds-grid{grid-template-columns:1fr}}
+  .cred{
+    background:var(--green-deep);
+    color:var(--cream-light);
+    padding:22px 20px 20px;
+    border-radius:2px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cred::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0 0.65 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.55;pointer-events:none;
+  }
+  .cred-tag{
+    position:relative;z-index:1;
+    font-family:'DM Mono',monospace;
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--copper-pale);
+    margin-bottom:10px;
+  }
+  .cred-name{
+    position:relative;z-index:1;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:21px;
+    line-height:1.15;
+    color:var(--cream-light);
+    letter-spacing:-.01em;
+    margin-bottom:6px;
+  }
+  .cred-name em{color:var(--copper-pale);font-style:italic;font-weight:400}
+  .cred-sub{
+    position:relative;z-index:1;
+    font-size:12px;
+    color:var(--green-pale);
+    line-height:1.4;
+  }
+
+  /* ============ NOW ============ */
+  .now-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:24px;
+  }
+  @media(max-width:780px){.now-grid{grid-template-columns:1fr}}
+  .now-card{
+    background:var(--cream-paper);
+    border:1px solid var(--rule-soft);
+    padding:0;
+    border-radius:2px;
+    overflow:hidden;
+    position:relative;
+  }
+  .now-card::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.65 0 0 0 0 0.55 0 0 0 0 0.4 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nn)'/%3E%3C/svg%3E");
+    opacity:.4;mix-blend-mode:multiply;pointer-events:none;
+  }
+  .now-strip{
+    background:var(--copper);
+    color:var(--cream-light);
+    padding:10px 22px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .now-strip::before, .now-strip::after{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    background:var(--cream-base);
+    border-radius:50%;
+    top:50%;
+    transform:translateY(-50%);
+  }
+  .now-strip::before{left:-7px}
+  .now-strip::after{right:-7px}
+  .now-strip .pulse{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--cream-light);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+  .now-body{padding:22px 24px 24px;position:relative;z-index:1}
+  .now-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:24px;
+    line-height:1.15;
+    color:var(--brown-deep);
+    margin-bottom:10px;
+    letter-spacing:-.01em;
+  }
+  .now-title em{color:var(--green-mid);font-style:italic;font-weight:400}
+  .now-desc{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--brown-mid);
+  }
+  .now-desc em{font-style:italic;color:var(--green-mid)}
+
+  /* ============ CONTACT ============ */
+  .contact-section{
+    background:var(--green-deep);
+    color:var(--cream-light);
+    margin: 100px -100vw 0;
+    padding: 100px 100vw 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-section::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0 0.65 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.55;pointer-events:none;
+  }
+  .contact-inner{
+    text-align:center;
+    max-width:760px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+  .contact-flag{
+    display:inline-flex;
+    align-items:center;gap:14px;
+    padding:8px 18px;
+    background:rgba(212,165,116,.12);
+    color:var(--copper-pale);
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    margin-bottom:30px;
+    border:1px solid rgba(212,165,116,.25);
+  }
+  .contact-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size: clamp(44px, 6.5vw, 84px);
+    line-height:.95;
+    letter-spacing:-.025em;
+    color:var(--cream-light);
+    margin-bottom:28px;
+  }
+  .contact-title em{font-style:italic;color:var(--copper-pale);font-weight:400}
+  .contact-lede{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size:22px;
+    line-height:1.45;
+    color:var(--green-pale);
+    margin-bottom:40px;
+    max-width:520px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .contact-lede em{font-style:italic;color:var(--cream-light);font-weight:400}
+  .contact-email{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size: clamp(24px, 3.4vw, 36px);
+    color:var(--copper-pale);
+    text-decoration:none;
+    border-bottom:1px solid var(--copper);
+    padding-bottom:6px;
+    display:inline-block;
+    margin-bottom:50px;
+    transition:all .2s;
+    letter-spacing:-.005em;
+  }
+  .contact-email:hover{color:var(--cream-light);border-bottom-color:var(--cream-light)}
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:14px;
+    max-width:680px;
+    margin: 0 auto;
+  }
+  @media(max-width:680px){.contact-grid{grid-template-columns:1fr 1fr}}
+  .contact-link{
+    padding:14px 18px;
+    border:1px dashed rgba(212,165,116,.4);
+    color:var(--cream-warm);
+    text-decoration:none;
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    transition:all .2s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    border-radius:2px;
+  }
+  .contact-link:hover{
+    border-color:var(--copper);
+    color:var(--copper-pale);
+    border-style:solid;
+  }
+  .contact-link svg{width:12px;height:12px;fill:currentColor}
+
+  /* ============ FOOTER ============ */
+  footer{
+    padding: 40px 0 30px;
+    text-align:center;
+    position:relative;
+    z-index:1;
+  }
+  .foot-mark{
+    margin-bottom:24px;
+  }
+  .foot-mark .seal{
+    display:inline-block;
+    width:80px;height:80px;
+    border:1.5px solid var(--copper-pale);
+    border-radius:50%;
+    line-height:74px;
+    text-align:center;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:30px;
+    color:var(--copper-pale);
+    position:relative;
+  }
+  .foot-mark .seal::before{
+    content:"";
+    position:absolute;
+    inset:4px;
+    border:1px solid var(--copper-pale);
+    border-radius:50%;
+    opacity:.5;
+  }
+  .colophon{
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--green-pale);
+  }
+  .colophon .sep{color:var(--copper-pale);margin:0 8px;opacity:.5}
+
+  /* Reveal animations */
+  .reveal{
+    opacity:0;
+    transform: translateY(20px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.08s}
+  .d2{transition-delay:.16s}
+  .d3{transition-delay:.24s}
 </style>
 </head>
 <body>
-<div id="cur"></div><div id="cur-r"></div><div id="progress"></div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Nav -->
 <nav>
-  <a href="#hero" class="nav-logo">
-    <img src="IMG_8828.JPG" alt="SSN" class="nav-logo-img">
-    <span class="nav-logo-txt">ssn<span>@research</span></span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#papers">papers</a></li>
-    <li><a href="#experience">exp</a></li>
-    <li><a href="#contact">contact</a></li>
-  </ul>
-</nav>
-<section id="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-left">
-    <div class="hero-tag">Quantitative Researcher/ Data Scientist</div>
-    <h1 class="hero-name"><span class="hn1">Shanchhith</span><span class="hn2">Singh Nayak</span></h1>
-    <p class="hero-sub">Causal inference<span class="pipe">|</span>Emperical IO<span class="pipe">|</span><span class="pipe">|</span> AI, ML, LLM </p>
-    <div class="terminal" style="margin-bottom:1.75rem;opacity:0;animation:fadeUp .8s .3s both">
-      <div class="term-bar"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div><span class="term-title">research_profile.json</span></div>
-      <div class="term-body">
-        <div style="margin-bottom:.5rem"><span class="prompt">ssn</span><span style="color:var(--fg3)">@</span><span class="prompt-path">research</span><span class="prompt-sym"> ~</span><span style="color:var(--fg3)"> $ </span><span class="cmd">cat profile.json</span></div>
-        <div style="color:var(--fg3)">{</div>
-        <div style="padding-left:1.2rem"><span class="out-key">"role"</span><span style="color:var(--fg3)">: </span><span class="out-str">"Remote Research Associate"</span><span style="color:var(--fg3)">,</span></div>
-        <div style="padding-left:1.2rem"><span class="out-key">"affil"</span><span style="color:var(--fg3)">: </span><span class="out-str">"Stanford GSB"</span><span style="color:var(--fg3)">,</span></div>
-        <div style="padding-left:1.2rem"><span class="out-key">"methods"</span><span style="color:var(--fg3)">: [</span><span class="out-str">"DiD"</span><span style="color:var(--fg3)">, </span><span class="out-str">"PSM"</span><span style="color:var(--fg3)">, </span><span class="out-str">"ML & AI"</span><span style="color:var(--fg3)">, </span><span class="out-str">"LoRA & GPU accelerated pipeline"</span><span style="color:var(--fg3)">],</span></div>
-        <div style="padding-left:1.2rem"><span class="out-key">"status"</span><span style="color:var(--fg3)">: </span><span class="out-bool">true</span></div>
-        <div style="color:var(--fg3)">}</div>
-        <div style="margin-top:.75rem"><span class="prompt">ssn</span><span style="color:var(--fg3)">@</span><span class="prompt-path">research</span><span class="prompt-sym"> ~</span><span style="color:var(--fg3)"> $ </span><span class="blink-cur"></span></div>
-      </div>
-    </div>
-    <div class="cta-row" style="opacity:0;animation:fadeUp .8s .5s both">
-      <a href="#projects" class="btn btn-green">$ ./view_research</a>
-      <a href="mailto:shanchhithsingh@gmail.com" class="btn btn-cyan">$ ./contact</a>
-      <a href="https://shanchhith.github.io/cv.pdf" class="btn btn-ghost" target="_blank">$ get cv.pdf</a>
-    </div>
-    <div class="social-row" style="opacity:0;animation:fadeUp .8s .65s both">
-      <a href="mailto:shanchhithsingh@gmail.com" class="soc"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>email</a>
-      <a href="https://github.com/Shanchhith" class="soc" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>github</a>
-      <a href="https://www.linkedin.com/in/shanchhith" class="soc" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>linkedin</a>
-      <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" class="soc" target="_blank"><svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>scholar</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="photo-wrap">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
       <img src="IMG_8828.JPG" alt="Shanchhith Singh Nayak">
-      <div class="photo-overlay"></div><div class="photo-scan"></div>
-      <div class="photo-caption">// shanchhith_singh_nayak.jpg</div>
+      <span class="name">Shanchhith Singh Nayak <em>· Researcher</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#papers">Papers</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-flag"><span class="star">★</span> Personal Index · 2026</div>
+
+    <div class="role-line">
+      Quantitative Researcher
+      <span class="dot"></span>
+      Data Scientist
+      <span class="dot"></span>
+      Economist
     </div>
-    <div class="stat-grid">
-      <div class="stat-cell"><div class="sv">7+</div><div class="sl">Projects</div></div>
-      <div class="stat-cell"><div class="sv">2</div><div class="sl">Working Papers</div></div>
-      <div class="stat-cell"><div class="sv">AIR 124</div><div class="sl">GATE Econ</div></div>
-      <div class="stat-cell"><div class="sv">9.8</div><div class="sl">MS GPA / 10</div></div>
+
+    <h1 class="title">Shanchhith<br/>Singh <em>Nayak.</em></h1>
+
+    <div class="hero-grid">
+      <div>
+        <p class="lede">
+          <span class="drop">A</span> researcher working at the intersection of <em>causal inference, empirical industrial organisation,</em> and applied machine learning — with current projects in consumer behaviour, health systems, and structural demand estimation. Based in India, working remotely with Stanford GSB. Open to pre-doctoral and PhD enquiries.
+        </p>
+
+        <div class="cta-row">
+          <a href="#projects" class="btn btn-primary">Selected Work <span class="arr">→</span></a>
+          <a href="mailto:shanchhithsingh@gmail.com" class="btn btn-copper">Get in Touch</a>
+          <a href="https://shanchhith.github.io/cv.pdf" target="_blank" class="btn btn-ghost">Download CV</a>
+        </div>
+
+        <div class="socials">
+          <a href="mailto:shanchhithsingh@gmail.com" class="soc">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Email
+          </a>
+          <a href="https://github.com/Shanchhith" target="_blank" class="soc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/shanchhith" target="_blank" class="soc">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" target="_blank" class="soc">
+            <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+            Scholar
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="photo-wrap">
+          <img src="IMG_8828.JPG" alt="Shanchhith Singh Nayak">
+          <div class="photo-caption">
+            <span class="lab">★ Researcher · Kashipur, India</span>
+            Shanchhith Singh Nayak · 2026
+          </div>
+        </div>
+        <div class="specimen">
+          <div class="row"><span class="lab">Current</span><span class="val">Stanford GSB · Remote RA</span></div>
+          <div class="row"><span class="lab">Field</span><span class="val">Quantitative Marketing · IO</span></div>
+          <div class="row"><span class="lab">Based</span><span class="val">Kashipur, India</span></div>
+          <div class="row"><span class="lab">Methods</span><span class="val">Causal · Structural · ML</span></div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
-<section class="sec" id="about">
-  <div class="sec-inner">
-    <div class="sec-head reveal"><span class="sec-num">// 01</span><h2 class="sec-title">about<span class="hl">()</span></h2><span class="sec-rule"></span></div>
+</header>
+
+<!-- About -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num"><em>I.</em></div>
+      <div class="section-head-text">
+        <div class="h-kicker">Section One · A Brief Profile</div>
+        <h2>About<em>.</em></h2>
+        <div class="h-right">
+          A short overview of where I am, where I've been, and what I'm reading toward.
+        </div>
+      </div>
+    </div>
+
     <div class="about-grid">
-      <div class="about-txt reveal"><p>I am a quantitative researcher / Data Scientist working on <span class="hl">causal programme evaluation</span>, consumer behaviour, and structural demand estimation. My work spans health systems, packaged goods markets, and platform economics.</p><p>Currently based in Kashipur, and working remotely with <span class="hl">Stanford GSB</span> on consumer behaviour pipelines.</p></div>
-      <div class="chip-list reveal d1">
-        <div class="chip-row"><span class="ck">location</span><span class="cv">Kashipur, India</span></div>
-        <div class="chip-row"><span class="ck">current</span><span class="cv">Remote RA · Stanford GSB</span></div>
-        <div class="chip-row"><span class="ck">previosuly at</span><span class="cv">IIM Ahmedabad + World Bank HRH project</span></div>
-        <div class="chip-row"><span class="ck">education</span><span class="cv">M.S. Economics · 9.80/10</span></div>
-        <div class="chip-row"><span class="ck">GATE</span><span class="cv">Economics · AIR 124</span></div>
-        <div class="chip-row"><span class="ck">UGC-NET</span><span class="cv">Economics · 99th percentile</span></div>
-        <div class="chip-row"><span class="ck">fellowship</span><span class="cv">Don Lavoie · Mercatus Center</span></div>
+      <div class="about-txt reveal">
+        <p>
+          I'm a quantitative researcher working on <em>causal programme evaluation,</em> consumer behaviour, and structural demand estimation. My work spans health systems, packaged-goods markets, and platform economics.
+        </p>
+        <p>
+          I'm currently a remote Research Associate with <strong>Prof. Sridhar Narayanan at Stanford GSB,</strong> and previously worked at <strong>IIM Ahmedabad's CMHS</strong> on a World Bank–funded Health Human Resources consortium across seven Indian states.
+        </p>
+        <p>
+          Targeting PhD programmes in <em>Quantitative Marketing and Empirical IO.</em> Open to research roles, pre-doctoral positions, and will relocate.
+        </p>
+      </div>
+
+      <div class="meta-card reveal d1">
+        <div class="meta-strip">
+          <span class="copper">★</span> File №01 · Profile
+        </div>
+        <div class="meta-row"><span class="lab">Location</span><span class="val">Kashipur, India</span></div>
+        <div class="meta-row"><span class="lab">Current</span><span class="val">Remote RA · <em>Stanford GSB</em></span></div>
+        <div class="meta-row"><span class="lab">Previously</span><span class="val">IIM Ahmedabad · CMHS</span></div>
+        <div class="meta-row"><span class="lab">Education</span><span class="val">M.S. Economics · 9.8/10</span></div>
+        <div class="meta-row"><span class="lab">GATE</span><span class="val">Economics · AIR 124</span></div>
+        <div class="meta-row"><span class="lab">UGC-NET</span><span class="val">99th percentile</span></div>
+        <div class="meta-row"><span class="lab">Fellowship</span><span class="val">Don Lavoie · Mercatus</span></div>
       </div>
     </div>
   </div>
 </section>
-<section class="sec" id="interests" style="background:var(--bg2)">
-  <div class="sec-inner">
-    <div class="sec-head reveal"><span class="sec-num">// 02</span><h2 class="sec-title">research_interests<span class="hl">[]</span></h2><span class="sec-rule"></span></div>
-    <div class="int-grid reveal">
-      <div class="int-card"><div class="in">01</div><div class="it">Empirical Industrial Organisation</div><div class="is">Demand estimation · market structure · pricing · structural models</div></div>
-      <div class="int-card"><div class="in">03</div><div class="it">Quantitative Marketing</div><div class="is">Shrinkflation · model diversity · consumer behaviour · ad effects</div></div>
-      <div class="int-card"><div class="in">04</div><div class="it">Causal Inference</div><div class="is">DiD · PSM · IV · staggered rollout · regression discontinuity</div></div>
-      <div class="int-card"><div class="in">05</div><div class="it">LLMs &amp; Demand Estimation</div><div class="is">LoRA fine-tuning · interpretability · price IV estimation</div></div>
-      <div class="int-card"><div class="in">06</div><div class="it">Historical Econometrics</div><div class="is">Marriage markets · revealed preferences · archival OCR pipelines</div></div>
+
+<!-- Interests -->
+<section id="interests">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num"><em>II.</em></div>
+      <div class="section-head-text">
+        <div class="h-kicker">Section Two · Areas of Inquiry</div>
+        <h2>Research <em>Interests.</em></h2>
+        <div class="h-right">
+          Five overlapping currents that have shaped what I read, what I write, and what I'd like to spend the next five years on.
+        </div>
+      </div>
+    </div>
+
+    <div class="int-grid">
+      <div class="int-card reveal">
+        <div class="int-num-strip"><span>01</span><span>Theme</span></div>
+        <div class="int-body">
+          <div class="int-title">Empirical <em>Industrial Organisation</em></div>
+          <div class="int-desc">Demand estimation, market structure, pricing, and structural models of firm and consumer behaviour.</div>
+        </div>
+      </div>
+      <div class="int-card reveal d1">
+        <div class="int-num-strip"><span>02</span><span>Theme</span></div>
+        <div class="int-body">
+          <div class="int-title">Quantitative <em>Marketing</em></div>
+          <div class="int-desc">Shrinkflation, model diversity, consumer choice under information frictions, and advertising effects.</div>
+        </div>
+      </div>
+      <div class="int-card reveal d2">
+        <div class="int-num-strip"><span>03</span><span>Theme</span></div>
+        <div class="int-body">
+          <div class="int-title">Causal <em>Inference</em></div>
+          <div class="int-desc">Difference-in-differences, propensity score matching, instrumental variables, staggered rollout, regression discontinuity.</div>
+        </div>
+      </div>
+      <div class="int-card reveal">
+        <div class="int-num-strip"><span>04</span><span>Theme</span></div>
+        <div class="int-body">
+          <div class="int-title">LLMs &amp; <em>Demand Estimation</em></div>
+          <div class="int-desc">Low-rank fine-tuning, interpretability, and using language models as price-aware demand predictors for new goods.</div>
+        </div>
+      </div>
+      <div class="int-card reveal d1">
+        <div class="int-num-strip"><span>05</span><span>Theme</span></div>
+        <div class="int-body">
+          <div class="int-title">Historical <em>Econometrics</em></div>
+          <div class="int-desc">Marriage markets, revealed preferences, archival OCR pipelines, and colonial-era institutional history.</div>
+        </div>
+      </div>
+      <div class="int-card reveal d2">
+        <div class="int-num-strip"><span>06</span><span>Theme</span></div>
+        <div class="int-body">
+          <div class="int-title">Health <em>Economics</em></div>
+          <div class="int-desc">Climate shocks, neonatal outcomes, health workforce capacity, and policy evaluation for state systems.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-<section class="sec" id="projects">
-  <div class="sec-inner">
-    <div class="sec-head reveal"><span class="sec-num">// 03</span><h2 class="sec-title">projects<span class="hl">.map()</span></h2><span class="sec-rule"></span></div>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num"><em>III.</em></div>
+      <div class="section-head-text">
+        <div class="h-kicker">Section Three · Selected Work</div>
+        <h2>Projects<em>.</em></h2>
+        <div class="h-right">
+          Seven recent projects across causal inference, machine learning, and structural estimation. Click any ticket for a fuller description; the affiliation is on the right.
+        </div>
+      </div>
+    </div>
+
     <div class="proj-list">
-      <div class="proj reveal"><div class="proj-n">01</div><div><div class="proj-t">Shrinkflation Detection Pipeline</div><div class="proj-d">GPU-accelerated SKU-matching pipeline detecting shrinkflation in packaged goods. Embedding retrieval, cross-encoder scoring, threshold calibration and eval workflows.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">GPU</span><span class="ptag">Embeddings</span><span class="ptag">Precision@k</span></div></div><div class="proj-m"><b>Methods</b>Semantic embeddings · cross-encoder · eval</div><div class="proj-a">Stanford GSB</div></div>
-      <div class="proj reveal"><div class="proj-n">02</div><div><div class="proj-t">Human vs AI Coaches — HealthifyMe</div><div class="proj-d">Large-scale panel data reconstruction + PSM with KD-trees and Mahalanobis distance to estimate causal effects of human coaching on weight loss. Full replication package on GitHub.</div><div class="proj-tags"><span class="ptag">PSM</span><span class="ptag">Panel Data</span><span class="ptag">KD-Trees</span><span class="ptag">OLS</span></div></div><div class="proj-m"><b>Methods</b>PSM · Mahalanobis · OLS on matched sample</div><div class="proj-a">Stanford GSB</div></div>
-      <div class="proj reveal"><div class="proj-n">03</div><div><div class="proj-t">Revealed Preferences — Indian Marriage Market 1950-2010</div><div class="proj-d">OCR + LLM classification pipeline on 60 years of matrimonial classifieds. Structural analysis of revealed preferences across caste, education, and geography.</div><div class="proj-tags"><span class="ptag">OCR</span><span class="ptag">LLM</span><span class="ptag">Structural Estimation</span></div></div><div class="proj-m"><b>Methods</b>OCR pipeline · LLM · structural estimation</div><div class="proj-a">IIMA</div></div>
-      <div class="proj reveal"><div class="proj-n">04</div><div><div class="proj-t">Debt Collection Regulation — Causal Analysis</div><div class="proj-d">DiD on firm-level call data estimating causal effect of regulatory limits on call frequency and collections. Parallel trends validation and robustness checks.</div><div class="proj-tags"><span class="ptag">DiD</span><span class="ptag">Stata</span><span class="ptag">Event Study</span></div></div><div class="proj-m"><b>Methods</b>Difference-in-differences · event study</div><div class="proj-a">Univ. of Missouri</div></div>
-      <div class="proj reveal"><div class="proj-n">05</div><div><div class="proj-t">Model Diversity &amp; Product Success</div><div class="proj-d">1,000+ synthetic model images via Midjourney. Qualtrics/Prolific experiment estimating causal effect of racial diversity in product photography on consumer choice.</div><div class="proj-tags"><span class="ptag">Midjourney</span><span class="ptag">Qualtrics</span><span class="ptag">Prolific</span></div></div><div class="proj-m"><b>Methods</b>Online experiment · conjoint analysis</div><div class="proj-a">HBS / Missouri</div></div>
-      <div class="proj reveal"><div class="proj-n">06</div><div><div class="proj-t">LLM-Based Demand Estimation — Replication</div><div class="proj-d">Replicating Kevin Lee's LLM demand estimation paper. Pipeline: LoRA fine-tuning to IV price estimation to interpretability methods under faculty supervision.</div><div class="proj-tags"><span class="ptag">LoRA</span><span class="ptag">HuggingFace</span><span class="ptag">IV Estimation</span><span class="ptag">PyTorch</span></div></div><div class="proj-m"><b>Methods</b>LoRA · IV estimation · structural demand</div><div class="proj-a">In Progress</div></div>
-      <div class="proj reveal"><div class="proj-n">07</div><div><div class="proj-t">HRH Capacity Surveys — 7-State India</div><div class="proj-d">Hospital and trainee surveys across seven Indian states on HRH capacity and service delivery. Mixed-methods synthesis for World Bank policy inputs.</div><div class="proj-tags"><span class="ptag">Survey Design</span><span class="ptag">Mixed-Methods</span><span class="ptag">Policy</span></div></div><div class="proj-m"><b>Methods</b>Survey design · mixed-methods · KPI mapping</div><div class="proj-a">World Bank / IIMA</div></div>
+
+      <div class="proj-card reveal">
+        <div class="proj-strip">
+          <span><span class="ser">P/01</span></span>
+          <span class="affil">Stanford GSB · 2025</span>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title"><em>Shrinkflation</em> Detection Pipeline</div>
+            <div class="proj-desc">GPU-accelerated SKU-matching pipeline detecting shrinkflation across packaged-goods catalogues. Embedding retrieval, cross-encoder scoring, threshold calibration, and evaluation workflows for 500K+ SKUs.</div>
+            <div class="proj-tags">
+              <span class="ptag">Python</span><span class="ptag">GPU</span><span class="ptag">Embeddings</span><span class="ptag">Precision@k</span>
+            </div>
+          </div>
+          <div class="proj-aside">
+            <div><div class="lab">Methods</div><div class="val">Semantic embeddings · cross-encoder · eval</div></div>
+            <div><div class="lab">Status</div><div class="val"><em>Active</em></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-strip">
+          <span><span class="ser">P/02</span></span>
+          <span class="affil">Stanford GSB · 2025</span>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">Human vs AI Coaches — <em>HealthifyMe</em></div>
+            <div class="proj-desc">Large-scale panel data reconstruction with propensity score matching using KD-trees and Mahalanobis distance to estimate the causal effect of human coaching on weight loss. Full replication package on GitHub.</div>
+            <div class="proj-tags">
+              <span class="ptag">PSM</span><span class="ptag">Panel Data</span><span class="ptag">KD-Trees</span><span class="ptag">OLS</span>
+            </div>
+          </div>
+          <div class="proj-aside">
+            <div><div class="lab">Methods</div><div class="val">PSM · Mahalanobis · OLS on matched sample</div></div>
+            <div><div class="lab">Status</div><div class="val"><em>Complete</em></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-strip">
+          <span><span class="ser">P/03</span></span>
+          <span class="affil">IIM Ahmedabad · 2024</span>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">Revealed Preferences — Indian <em>Marriage Market</em> 1950–2010</div>
+            <div class="proj-desc">OCR and LLM classification pipeline over sixty years of <em>Times of India</em> matrimonial classifieds. Structural analysis of revealed preferences across caste, education, and geography.</div>
+            <div class="proj-tags">
+              <span class="ptag">OCR</span><span class="ptag">LLM</span><span class="ptag">Structural Estimation</span>
+            </div>
+          </div>
+          <div class="proj-aside">
+            <div><div class="lab">Methods</div><div class="val">OCR pipeline · LLM classification · structural estimation</div></div>
+            <div><div class="lab">Status</div><div class="val"><em>Working paper</em></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-strip">
+          <span><span class="ser">P/04</span></span>
+          <span class="affil">Univ. of Missouri · 2024</span>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">Debt Collection Regulation — <em>Causal Analysis</em></div>
+            <div class="proj-desc">Difference-in-differences on firm-level call data estimating the causal effect of regulatory limits on call frequency and collection outcomes. Parallel trends validation and robustness checks throughout.</div>
+            <div class="proj-tags">
+              <span class="ptag">DiD</span><span class="ptag">Stata</span><span class="ptag">Event Study</span>
+            </div>
+          </div>
+          <div class="proj-aside">
+            <div><div class="lab">Methods</div><div class="val">Difference-in-differences · event study</div></div>
+            <div><div class="lab">Status</div><div class="val"><em>Complete</em></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-strip">
+          <span><span class="ser">P/05</span></span>
+          <span class="affil">HBS · Missouri · 2024</span>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">Model Diversity &amp; <em>Product Success</em></div>
+            <div class="proj-desc">Generated 1,000+ synthetic model images via Midjourney. Designed and ran a Qualtrics/Prolific experiment estimating the causal effect of racial diversity in product photography on consumer choice.</div>
+            <div class="proj-tags">
+              <span class="ptag">Midjourney</span><span class="ptag">Qualtrics</span><span class="ptag">Prolific</span>
+            </div>
+          </div>
+          <div class="proj-aside">
+            <div><div class="lab">Methods</div><div class="val">Online experiment · conjoint analysis</div></div>
+            <div><div class="lab">Status</div><div class="val"><em>Complete</em></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-strip">
+          <span><span class="ser">P/06</span></span>
+          <span class="affil">In Progress · 2026</span>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title"><em>LLM-Based Demand Estimation</em> — Replication</div>
+            <div class="proj-desc">Replicating Kevin Lee's LLM demand estimation paper. End-to-end pipeline: LoRA fine-tuning, instrumental variable price estimation, and interpretability methods — under faculty supervision.</div>
+            <div class="proj-tags">
+              <span class="ptag">LoRA</span><span class="ptag">HuggingFace</span><span class="ptag">IV Estimation</span><span class="ptag">PyTorch</span>
+            </div>
+          </div>
+          <div class="proj-aside">
+            <div><div class="lab">Methods</div><div class="val">LoRA · IV estimation · structural demand</div></div>
+            <div><div class="lab">Status</div><div class="val"><em>Ongoing</em></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-strip">
+          <span><span class="ser">P/07</span></span>
+          <span class="affil">World Bank · IIMA · 2024–25</span>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title"><em>HRH Capacity Surveys</em> — Seven-State India Study</div>
+            <div class="proj-desc">Hospital and trainee surveys across seven Indian states on health human resources capacity and service delivery. Mixed-methods synthesis feeding World Bank policy inputs for the Health Human Resources consortium.</div>
+            <div class="proj-tags">
+              <span class="ptag">Survey Design</span><span class="ptag">Mixed-Methods</span><span class="ptag">Policy</span>
+            </div>
+          </div>
+          <div class="proj-aside">
+            <div><div class="lab">Methods</div><div class="val">Survey design · mixed-methods · KPI mapping</div></div>
+            <div><div class="lab">Status</div><div class="val"><em>Active</em></div></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-<section class="sec" id="papers" style="background:var(--bg2)">
-  <div class="sec-inner">
-    <div class="sec-head reveal"><span class="sec-num">// 04</span><h2 class="sec-title">publications<span class="hl">.filter()</span></h2><span class="sec-rule"></span></div>
+
+<!-- Papers -->
+<section id="papers">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num"><em>IV.</em></div>
+      <div class="section-head-text">
+        <div class="h-kicker">Section Four · In Progress</div>
+        <h2>Papers &amp; <em>Working Drafts.</em></h2>
+        <div class="h-right">
+          Working papers and drafts currently under development. Full versions available on request.
+        </div>
+      </div>
+    </div>
+
     <div class="paper-list">
-      <div class="paper reveal"><div><div class="paper-t">Revealed Preferences in the Indian Marriage Market (1950-2010)</div><div class="paper-v">Working Paper</div></div><span class="badge badge-c">Working Paper</span></div>
-      <div class="paper reveal"><div><div class="paper-t">Heat Stress and Neonatal Mortality in India</div><div class="paper-v">Working Paper</div></div><span class="badge badge-c">Working Paper</span></div>
+      <div class="paper reveal">
+        <div>
+          <div class="paper-t">Revealed Preferences in the <em>Indian Marriage Market</em> (1950–2010)</div>
+          <div class="paper-v">With IIM Ahmedabad · Under preparation</div>
+        </div>
+        <span class="paper-badge">Working Paper</span>
+      </div>
+      <div class="paper reveal d1">
+        <div>
+          <div class="paper-t"><em>Heat Stress and Neonatal Mortality</em> in India</div>
+          <div class="paper-v">Climate shocks · Arogyashree · Under preparation</div>
+        </div>
+        <span class="paper-badge">Working Paper</span>
+      </div>
     </div>
-    <div style="margin-top:1.75rem" class="reveal"><a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" target="_blank" class="btn btn-ghost">$ open scholar_profile</a></div>
+
+    <div style="margin-top:32px" class="reveal">
+      <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" target="_blank" class="btn btn-ghost">Open Scholar Profile <span class="arr">→</span></a>
+    </div>
   </div>
 </section>
-<section class="sec" id="experience">
-  <div class="sec-inner">
-    <div class="sec-head reveal"><span class="sec-num">// 05</span><h2 class="sec-title">experience<span class="hl">.log()</span></h2><span class="sec-rule"></span></div>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num"><em>V.</em></div>
+      <div class="section-head-text">
+        <div class="h-kicker">Section Five · A Brief Chronology</div>
+        <h2>Experience<em>.</em></h2>
+        <div class="h-right">
+          Four research appointments spanning consumer behaviour, health systems, and platform economics — chronological, most recent first.
+        </div>
+      </div>
+    </div>
+
     <div class="exp-list">
-      <div class="exp reveal"><div><div class="exp-role">Remote Research Associate</div><div class="exp-org"><span class="hl">Stanford Graduate School of Business</span> · Remote / India</div><ul class="exp-buls"><li>Shrinkflation pipeline — GPU-accelerated SKU matching with embedding retrieval and cross-encoder scoring</li><li>HealthifyMe — PSM with KD-trees, panel data reconstruction, full replication package</li></ul></div><div class="exp-yr">2025 — Present</div></div>
-      <div class="exp reveal"><div><div class="exp-role">Quantitative Analyst</div><div class="exp-org"><span class="hl">World Bank (Health Policy)</span> &amp; IIM Ahmedabad · CMHS</div><ul class="exp-buls"><li>Analysis-ready datasets and reproducible reporting for World Bank HRH consortium across seven states</li><li>Statistical analyses — trend profiling, subgroup comparisons, robustness checks for policy briefs</li><li>Multi-stakeholder coordination translating policy questions into measurable KPIs</li></ul></div><div class="exp-yr">2025 — Present</div></div>
-      <div class="exp reveal"><div><div class="exp-role">Research Associate</div><div class="exp-org"><span class="hl">IIM Ahmedabad</span> · Centre for Management of Health Services</div><ul class="exp-buls"><li>Empirical research and policy analytics across HRH, maternal health, and health systems projects</li><li>Survey design, field protocols, reproducible scripts for external stakeholders</li></ul></div><div class="exp-yr">2024 — 2025</div></div>
-      <div class="exp reveal"><div><div class="exp-role">Remote Research Associate</div><div class="exp-org"><span class="hl">Univ. of Missouri</span> · Notre Dame · Harvard Business School</div><ul class="exp-buls"><li>Debt collection DiD · model diversity experiment · ad transparency geocoding pipeline</li></ul></div><div class="exp-yr">2024</div></div>
+      <div class="exp reveal">
+        <div>
+          <div class="exp-role">Remote <em>Research Associate</em></div>
+          <div class="exp-org">Stanford Graduate School of Business <span class="sep">·</span> Remote · India</div>
+          <ul class="exp-buls">
+            <li>Built shrinkflation detection pipeline — GPU-accelerated SKU matching with embedding retrieval and cross-encoder scoring across 500K+ SKUs.</li>
+            <li>Designed and shipped the HealthifyMe PSM study — KD-tree propensity matching, panel data reconstruction, and a full replication package.</li>
+          </ul>
+        </div>
+        <div class="exp-yr">2025 — Present</div>
+      </div>
+
+      <div class="exp reveal">
+        <div>
+          <div class="exp-role"><em>Quantitative Analyst</em></div>
+          <div class="exp-org">World Bank Health Policy <span class="sep">·</span> IIM Ahmedabad CMHS</div>
+          <ul class="exp-buls">
+            <li>Built analysis-ready datasets and reproducible reporting infrastructure for the World Bank HRH consortium across seven Indian states.</li>
+            <li>Ran statistical analyses — trend profiling, subgroup comparisons, robustness checks — feeding into policy briefs.</li>
+            <li>Coordinated across IIMA, AIIMS Delhi, AIIMS Bhubaneswar, and CMC Vellore on translating policy questions into measurable KPIs.</li>
+          </ul>
+        </div>
+        <div class="exp-yr">2025 — Present</div>
+      </div>
+
+      <div class="exp reveal">
+        <div>
+          <div class="exp-role"><em>Research Associate</em></div>
+          <div class="exp-org">IIM Ahmedabad <span class="sep">·</span> Centre for Management of Health Services</div>
+          <ul class="exp-buls">
+            <li>Empirical research and policy analytics across HRH, maternal health, and health-systems projects.</li>
+            <li>Survey design, field protocols, and reproducible scripts handed off to external stakeholders.</li>
+          </ul>
+        </div>
+        <div class="exp-yr">2024 — 2025</div>
+      </div>
+
+      <div class="exp reveal">
+        <div>
+          <div class="exp-role">Remote <em>Research Associate</em></div>
+          <div class="exp-org">Univ. of Missouri <span class="sep">·</span> Notre Dame <span class="sep">·</span> Harvard Business School</div>
+          <ul class="exp-buls">
+            <li>Debt collection regulation DiD study with Skit.ai — parallel trends validation and event-study robustness.</li>
+            <li>Designed and ran the model diversity online experiment (Midjourney + Qualtrics + Prolific).</li>
+            <li>Built the VDO.ai ad transparency geocoding pipeline.</li>
+          </ul>
+        </div>
+        <div class="exp-yr">2024</div>
+      </div>
     </div>
   </div>
 </section>
-<section class="sec" id="skills" style="background:var(--bg2)">
-  <div class="sec-inner">
-    <div class="sec-head reveal"><span class="sec-num">// 06</span><h2 class="sec-title">stack<span class="hl">.keys()</span></h2><span class="sec-rule"></span></div>
-    <div class="skill-grid reveal">
-      <div class="skill-cell"><div class="skill-lbl">languages</div><div class="pills"><span class="pill">Python</span><span class="pill">R</span><span class="pill">Stata</span><span class="pill">LaTeX</span></div></div>
-      <div class="skill-cell"><div class="skill-lbl">ml / stats</div><div class="pills"><span class="pill">XGBoost</span><span class="pill">scikit-learn</span><span class="pill">DiD</span><span class="pill">PSM</span><span class="pill">IV</span><span class="pill">Embeddings</span></div></div>
-      <div class="skill-cell"><div class="skill-lbl">data engineering</div><div class="pills"><span class="pill">pandas</span><span class="pill">NumPy</span><span class="pill">Panel Data</span><span class="pill">GCP</span><span class="pill">Databricks</span></div></div>
-      <div class="skill-cell"><div class="skill-lbl">deep learning</div><div class="pills"><span class="pill">PyTorch</span><span class="pill">HuggingFace PEFT</span><span class="pill">LoRA</span><span class="pill">OpenAI API</span></div></div>
+
+<!-- Stack -->
+<section id="stack">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num"><em>VI.</em></div>
+      <div class="section-head-text">
+        <div class="h-kicker">Section Six · Methods &amp; Tools</div>
+        <h2>Stack &amp; <em>Credentials.</em></h2>
+        <div class="h-right">
+          The technical toolkit I work with daily, and the academic credentials behind it.
+        </div>
+      </div>
     </div>
-    <div class="creds-row reveal" style="margin-top:1px">
-      <div class="cred"><div class="cred-n">GATE Economics — AIR 124</div><div class="cred-b">National Rank · India</div></div>
-      <div class="cred"><div class="cred-n">UGC-NET — 99th pct</div><div class="cred-b">Economics · National Exam</div></div>
-      <div class="cred"><div class="cred-n">Don Lavoie Fellow</div><div class="cred-b">Mercatus Center</div></div>
-      <div class="cred"><div class="cred-n">M.S. Economics · 9.80/10</div><div class="cred-b">IISER Bhopal</div></div>
+
+    <div class="stack-grid">
+      <div class="stack-cell reveal">
+        <div class="stack-lab">★ Languages</div>
+        <div class="stack-pills">
+          <span class="pill">Python</span>
+          <span class="pill">R</span>
+          <span class="pill">Stata</span>
+          <span class="pill">LaTeX</span>
+          <span class="pill">SQL</span>
+        </div>
+      </div>
+      <div class="stack-cell reveal d1">
+        <div class="stack-lab">★ ML &amp; Statistics</div>
+        <div class="stack-pills">
+          <span class="pill">XGBoost</span>
+          <span class="pill">scikit-learn</span>
+          <span class="pill">DiD</span>
+          <span class="pill">PSM</span>
+          <span class="pill">IV</span>
+          <span class="pill">Embeddings</span>
+        </div>
+      </div>
+      <div class="stack-cell reveal d2">
+        <div class="stack-lab">★ Data Engineering</div>
+        <div class="stack-pills">
+          <span class="pill">pandas</span>
+          <span class="pill">NumPy</span>
+          <span class="pill">Panel Data</span>
+          <span class="pill">GCP</span>
+          <span class="pill">Databricks</span>
+        </div>
+      </div>
+      <div class="stack-cell reveal d3">
+        <div class="stack-lab">★ Deep Learning</div>
+        <div class="stack-pills">
+          <span class="pill">PyTorch</span>
+          <span class="pill">HuggingFace PEFT</span>
+          <span class="pill">LoRA / QLoRA</span>
+          <span class="pill">OpenAI API</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="creds-grid">
+      <div class="cred reveal">
+        <div class="cred-tag">★ National Rank</div>
+        <div class="cred-name">GATE Economics <em>AIR 124</em></div>
+        <div class="cred-sub">All-India Rank · National Exam</div>
+      </div>
+      <div class="cred reveal d1">
+        <div class="cred-tag">★ Percentile</div>
+        <div class="cred-name">UGC-NET <em>99th pct</em></div>
+        <div class="cred-sub">Economics · National Exam</div>
+      </div>
+      <div class="cred reveal d2">
+        <div class="cred-tag">★ Fellowship</div>
+        <div class="cred-name">Don Lavoie <em>Fellow</em></div>
+        <div class="cred-sub">Mercatus Center · GMU</div>
+      </div>
+      <div class="cred reveal d3">
+        <div class="cred-tag">★ Degree</div>
+        <div class="cred-name">M.S. Economics <em>9.80/10</em></div>
+        <div class="cred-sub">Integrated BS-MS · IISER Bhopal</div>
+      </div>
     </div>
   </div>
 </section>
-<section class="sec" id="now">
-  <div class="sec-inner">
-    <div class="sec-head reveal"><span class="sec-num">// 07</span><h2 class="sec-title">current_processes<span class="hl">.running()</span></h2><span class="sec-rule"></span></div>
-    <div class="now-grid reveal">
-      <div class="now-card"><div class="now-n">PID 001 · ACTIVE</div><div class="now-t">World Bank HRH Project</div><div class="now-d">Multi-state health systems analysis across <span class="hl">seven Indian states</span>. Assisting the government and World bank in formulating a implementation ready HRH policy for healthcare sector.</div></div>
-      <div class="now-card"><div class="now-n">PID 002 · ACTIVE</div><div class="now-t">LLM Demand Estimation</div><div class="now-d">Working on a project to predict demand for new goods introduced to new markets — <span class="hl">LoRA fine-tuning</span> + IV price estimation + interpretability pipeline under faculty supervision.</div></div>
+
+<!-- Now -->
+<section id="now">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num"><em>VII.</em></div>
+      <div class="section-head-text">
+        <div class="h-kicker">Section Seven · The Desk Today</div>
+        <h2>Currently<em>.</em></h2>
+        <div class="h-right">
+          Two active workstreams on the desk this season. Most recently updated May 2026.
+        </div>
+      </div>
+    </div>
+
+    <div class="now-grid">
+      <div class="now-card reveal">
+        <div class="now-strip">
+          <span class="pulse"></span>
+          Active · World Bank · HRH
+        </div>
+        <div class="now-body">
+          <div class="now-title">Health Workforce <em>Policy</em></div>
+          <div class="now-desc">Multi-state analysis across <em>seven Indian states</em> — Odisha, Tamil Nadu, Meghalaya, Andhra Pradesh, Punjab. Translating field surveys into an implementation-ready HRH policy for the healthcare sector with the World Bank and Government of India.</div>
+        </div>
+      </div>
+      <div class="now-card reveal d1">
+        <div class="now-strip">
+          <span class="pulse"></span>
+          Active · Stanford GSB
+        </div>
+        <div class="now-body">
+          <div class="now-title">LLM <em>Demand Estimation</em></div>
+          <div class="now-desc">Predicting demand for new goods entering new markets using <em>LoRA fine-tuning,</em> instrumental-variable price estimation, and an interpretability layer — under faculty supervision.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-<section id="contact">
-  <div class="contact-term reveal">
-    <div style="margin-bottom:1rem;color:var(--fg3);font-size:.62rem;letter-spacing:.1em;border-bottom:1px solid var(--border);padding-bottom:.75rem">// contact.sh — initiating connection</div>
-    <div class="contact-line"><span class="prompt" style="font-size:.72rem">ssn@research ~ $</span> <span style="color:var(--fg2)">whoami</span></div>
-    <div class="contact-line" style="padding-left:1rem;margin-top:.3rem"><span class="hl">Shanchhith Singh Nayak</span> — Quantitative Researcher</div>
-    <div class="contact-line" style="padding-left:1rem"><span class="hl2">shanchhithsingh@gmail.com</span> · Ahmedabad, India</div>
-    <div style="margin-top:1rem"><span class="prompt" style="font-size:.72rem">ssn@research ~ $</span> <span style="color:var(--fg2)">echo $STATUS</span></div>
-    <div class="contact-line" style="padding-left:1rem;margin-top:.3rem">Open to research roles, pre-docs, and PhD enquiries. <span class="hl">Will relocate.</span></div>
-    <div style="margin-top:1rem"><span class="prompt" style="font-size:.72rem">ssn@research ~ $</span> <span class="blink-cur"></span></div>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-flag">★ Get in Touch</div>
+    <h2 class="contact-title">Let's <em>talk.</em></h2>
+    <p class="contact-lede">
+      Open to <em>research roles, pre-doctoral positions, and PhD enquiries.</em> Happy to discuss collaborations on causal inference, structural estimation, or applied ML projects. Will relocate.
+    </p>
+    <a href="mailto:shanchhithsingh@gmail.com" class="contact-email">shanchhithsingh@gmail.com</a>
+
+    <div class="contact-grid">
+      <a href="mailto:shanchhithsingh@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email
+      </a>
+      <a href="https://github.com/Shanchhith" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/shanchhith" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+        Scholar
+      </a>
+    </div>
   </div>
-  <div class="c-links reveal">
-    <a href="mailto:shanchhithsingh@gmail.com" class="c-lnk">email</a>
-    <a href="https://github.com/Shanchhith" class="c-lnk" target="_blank">github</a>
-    <a href="https://www.linkedin.com/in/shanchhith" class="c-lnk" target="_blank">linkedin</a>
-    <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&hl=en" class="c-lnk" target="_blank">scholar</a>
-  </div>
-  <p class="footer reveal">// 2026 shanchhith_singh_nayak · built from scratch</p>
+
+  <footer>
+    <div class="foot-mark">
+      <div class="seal">S</div>
+    </div>
+    <div class="colophon">
+      Shanchhith Singh Nayak <span class="sep">·</span> 2026 <span class="sep">·</span> Set in Cormorant Garamond, Karla &amp; DM Mono
+    </div>
+  </footer>
 </section>
+
 <script>
-const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop)})();
-document.querySelectorAll('a,.proj,.int-card,.now-card,.chip-row,.pill,.stat-cell,.btn,.soc,.c-lnk').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('cur-grow'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-grow'));
-});
-window.addEventListener('scroll',()=>{
-  const h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('progress').style.width=(window.scrollY/h*100)+'%';
-});
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
-},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-const canvas=document.createElement('canvas');
-canvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.018';
-document.body.prepend(canvas);
-const ctx=canvas.getContext('2d');
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
-resize();window.addEventListener('resize',resize);
-const cols=Math.floor(window.innerWidth/20);
-const drops=Array(cols).fill(1);
-const chars='01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ';
-function rain(){
-  ctx.fillStyle='rgba(5,5,8,0.05)';ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle='#00ff41';ctx.font='14px JetBrains Mono,monospace';
-  drops.forEach((y,i)=>{
-    const ch=chars[Math.floor(Math.random()*chars.length)];
-    ctx.fillText(ch,i*20,y*20);
-    if(y*20>canvas.height&&Math.random()>.975)drops[i]=0;
-    drops[i]++;
+  // Scroll progress
+  const progress = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = (window.scrollY / h) * 100;
+    progress.style.setProperty('--prog', p + '%');
   });
-}
-setInterval(rain,55);
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
