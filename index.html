@@ -3,26 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8f8f5">
-  <meta name="description" content="Shanchhith Singh Nayak is a quantitative researcher studying markets, consumer behaviour, and causal inference.">
-  <title>Shanchhith Singh Nayak — Quantitative Researcher</title>
-  <link rel="icon" type="image/jpeg" href="IMG_8828.JPG">
+  <meta name="theme-color" content="#fafaf8">
+  <meta name="description" content="Shanchhith Singh Nayak is a quantitative researcher working on markets, consumer behaviour, and causal inference.">
+  <title>Shanchhith Singh Nayak</title>
   <style>
     :root {
       color-scheme: light;
-      --paper: #f8f8f5;
-      --surface: #fff;
-      --ink: #202820;
-      --muted: #687168;
-      --line: #dfe3dc;
-      --green: #315744;
-      --green-dark: #203d2e;
-      --accent: #bd6b40;
-      --content: 1080px;
+      --paper: #fafaf8;
+      --ink: #252a26;
+      --muted: #747b74;
+      --line: #e4e6e1;
+      --accent: #315744;
+      --width: 680px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       background: var(--paper);
@@ -31,469 +27,93 @@
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-    img { display: block; max-width: 100%; }
-    .wrap { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
-    .skip-link {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      z-index: 10;
-      padding: 8px 12px;
-      transform: translateY(-150%);
-      background: var(--ink);
-      color: white;
-    }
-    .skip-link:focus { transform: translateY(0); }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      border-bottom: 1px solid var(--line);
-      background: rgb(248 248 245 / 94%);
-      backdrop-filter: blur(12px);
-    }
-    .nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .brand {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      line-height: 1.25;
-      white-space: nowrap;
-    }
-    .brand strong { font-family: Georgia, "Times New Roman", serif; font-size: 18px; font-weight: 500; }
-    .brand span { color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-    .nav-links { display: flex; flex-wrap: wrap; gap: 28px; list-style: none; margin: 0; padding: 0; }
-    .nav-links a {
-      color: var(--muted);
-      font-size: 13px;
-      text-decoration: none;
-      transition: color .18s ease;
-    }
-    .nav-links a:hover { color: var(--green); }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
-      align-items: center;
-      gap: clamp(40px, 8vw, 100px);
-      padding-block: clamp(72px, 11vw, 132px);
-    }
-    .eyebrow, .section-label {
-      margin: 0 0 16px;
-      color: var(--green);
-      font-size: 11px;
-      font-weight: 650;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-    h1, h2, h3, p { margin-top: 0; }
-    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    main { width: min(var(--width), calc(100% - 40px)); margin: 0 auto; padding: 15vh 0 48px; }
+    h1, h2, p { margin: 0; }
     h1 {
-      max-width: 690px;
-      margin-bottom: 24px;
-      font-size: clamp(48px, 7.3vw, 86px);
-      letter-spacing: -.055em;
-      line-height: .99;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 8vw, 58px);
+      font-weight: 400;
+      letter-spacing: -.045em;
+      line-height: 1.08;
     }
-    h1 span { color: var(--green); }
-    .hero-copy {
-      max-width: 620px;
-      margin-bottom: 30px;
-      color: #4c564d;
-      font-size: clamp(17px, 2vw, 20px);
-      line-height: 1.7;
-    }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    .button {
-      display: inline-flex;
-      min-height: 46px;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 17px;
-      border: 1px solid var(--green);
-      border-radius: 4px;
-      background: var(--green);
-      color: white;
+    .role { margin-top: 10px; color: var(--muted); font-size: 15px; }
+    .intro { max-width: 580px; margin-top: 24px; font-size: 17px; }
+    .links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; }
+    .links a, .project a {
+      color: var(--accent);
       font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background .18s ease, border-color .18s ease;
-    }
-    .button:hover { border-color: var(--green-dark); background: var(--green-dark); }
-    .button.secondary { background: transparent; color: var(--green); }
-    .button.secondary:hover { background: #edf2ed; }
-    .portrait {
-      position: relative;
-      max-width: 330px;
-      justify-self: end;
-      margin: 0;
-    }
-    .portrait img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      border-radius: 4px;
-      object-fit: cover;
-      object-position: center 22%;
-      background: #e6e9e3;
-    }
-    .portrait figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; }
-
-    .quick-facts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 26px;
-      margin-top: 30px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .quick-facts span { display: inline-flex; align-items: center; gap: 8px; }
-    .quick-facts span::before { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); content: ""; }
-
-    .section { padding-block: 74px; border-top: 1px solid var(--line); }
-    .section-heading {
-      display: grid;
-      grid-template-columns: minmax(180px, .7fr) 1.3fr;
-      gap: 32px;
-      align-items: start;
-      margin-bottom: 38px;
-    }
-    .section-heading h2 {
-      margin-bottom: 0;
-      font-size: clamp(34px, 5vw, 48px);
-      letter-spacing: -.04em;
-      line-height: 1.1;
-    }
-    .section-intro { max-width: 620px; margin: 5px 0 0; color: var(--muted); }
-    .interest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    .interest { padding-top: 18px; border-top: 2px solid var(--green); }
-    .interest h3 { margin-bottom: 8px; font-size: 22px; }
-    .interest p { margin-bottom: 0; color: var(--muted); font-size: 14px; }
-
-    .project-list { border-top: 1px solid var(--line); }
-    .project {
-      display: grid;
-      grid-template-columns: 150px minmax(0, 1fr) auto;
-      gap: 24px;
-      align-items: start;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .project-meta { color: var(--muted); font-size: 12px; }
-    .project-meta span { display: block; }
-    .project h3 { margin: 0 0 7px; font-size: 22px; letter-spacing: -.02em; }
-    .project p { max-width: 690px; margin: 0; color: var(--muted); font-size: 14px; }
-    .project-link {
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 600;
       text-decoration-thickness: 1px;
       text-underline-offset: 4px;
-      white-space: nowrap;
     }
-    .paper {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: center;
-      padding: 22px 0;
+    section { margin-top: 68px; }
+    h2 {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .project {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px 20px;
+      align-items: baseline;
+      padding: 15px 0;
       border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
     }
-    .paper h3 { margin-bottom: 5px; font-size: 21px; }
-    .paper p { margin-bottom: 0; color: var(--muted); font-size: 13px; }
+    .project:last-child { border-bottom: 1px solid var(--line); }
+    .project h3 { margin: 0; font-size: 15px; font-weight: 600; }
+    .project p { grid-column: 1; color: var(--muted); font-size: 13px; }
+    .project a { grid-column: 2; grid-row: 1 / span 2; }
+    footer { margin-top: 62px; color: var(--muted); font-size: 12px; }
 
-    .experience-list { border-top: 1px solid var(--line); }
-    .experience {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 150px;
-      gap: 24px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .experience h3 { margin-bottom: 4px; font-size: 23px; }
-    .experience .org { margin-bottom: 10px; color: var(--green); font-size: 13px; font-weight: 600; }
-    .experience p { max-width: 720px; margin-bottom: 0; color: var(--muted); font-size: 14px; }
-    .dates { color: var(--muted); font-size: 12px; text-align: right; }
-    .credentials {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 38px;
-    }
-    .credential { padding-left: 14px; border-left: 2px solid var(--line); }
-    .credential strong { display: block; font-family: Georgia, "Times New Roman", serif; font-size: 17px; font-weight: 400; }
-    .credential span { color: var(--muted); font-size: 12px; }
-    .tools { margin: 30px 0 0; color: var(--muted); font-size: 13px; }
-    .tools strong { color: var(--ink); font-weight: 600; }
-
-    .contact {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 28px;
-      align-items: center;
-      padding: 42px;
-      border-radius: 5px;
-      background: var(--green-dark);
-      color: white;
-    }
-    .contact h2 { margin-bottom: 8px; font-size: clamp(32px, 4vw, 46px); letter-spacing: -.04em; }
-    .contact p { max-width: 570px; margin-bottom: 0; color: #d3ded5; font-size: 14px; }
-    .contact .button { border-color: white; background: white; color: var(--green-dark); white-space: nowrap; }
-    .contact .button:hover { background: #e8eee8; }
-    .social-links { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
-    .social-links a { color: #d3ded5; font-size: 13px; text-underline-offset: 4px; }
-    footer { padding-block: 28px; color: var(--muted); font-size: 12px; }
-    footer .wrap { display: flex; justify-content: space-between; gap: 16px; }
-
-    @media (max-width: 760px) {
-      .nav { min-height: auto; align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 16px; }
-      .nav-links { gap: 10px 20px; }
-      .hero { grid-template-columns: minmax(0, 1fr) 220px; gap: 28px; }
-      .section-heading { grid-template-columns: 1fr; gap: 12px; }
-      .interest-grid { grid-template-columns: 1fr 1fr; }
-      .project { grid-template-columns: 110px minmax(0, 1fr); gap: 12px 20px; }
-      .project-link { grid-column: 2; }
-      .credentials { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 560px) {
-      .wrap { width: min(var(--content), calc(100% - 36px)); }
-      .nav-links { column-gap: 16px; }
-      .hero { grid-template-columns: 1fr; padding-block: 64px; }
-      .portrait { width: min(100%, 280px); justify-self: start; }
-      .section { padding-block: 56px; }
-      .interest-grid { grid-template-columns: 1fr; gap: 22px; }
-      .project { grid-template-columns: 1fr; gap: 8px; }
-      .project-link { grid-column: auto; }
-      .paper, .experience { grid-template-columns: 1fr; }
-      .paper { align-items: flex-start; flex-direction: column; }
-      .experience { gap: 8px; }
-      .dates { text-align: left; }
-      .credentials { gap: 18px 12px; }
-      .contact { grid-template-columns: 1fr; padding: 28px 24px; }
-      .contact .button { justify-self: start; }
-      footer .wrap { flex-direction: column; }
+    @media (max-width: 480px) {
+      main { padding-top: 12vh; }
+      .project { grid-template-columns: 1fr; gap: 4px; }
+      .project p, .project a { grid-column: 1; grid-row: auto; }
+      section { margin-top: 54px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="#top">
-        <strong>Shanchhith Singh Nayak</strong>
-        <span>Quantitative researcher</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#research">Research</a></li>
-        <li><a href="#work">Selected work</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <main>
+    <header>
+      <h1>Shanchhith Singh Nayak</h1>
+      <p class="role">Quantitative researcher · Economist</p>
+      <p class="intro">
+        I study markets and consumer behaviour using causal inference and applied machine learning.
+      </p>
+      <nav class="links" aria-label="Contact and profiles">
+        <a href="mailto:shanchhithsingh@gmail.com">Email</a>
+        <a href="https://github.com/Shanchhith" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/shanchhith" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+      </nav>
+    </header>
 
-  <main id="main">
-    <section class="hero wrap" id="top">
-      <div>
-        <p class="eyebrow">Quantitative researcher · Economist</p>
-        <h1>Shanchhith<br><span>Singh Nayak</span></h1>
-        <p class="hero-copy">
-          I study how people make decisions in markets, and how policy and technology shape those choices. My work brings together causal inference, empirical industrial organisation, and applied machine learning.
-        </p>
-        <div class="actions">
-          <a class="button" href="#work">Explore selected work <span aria-hidden="true">→</span></a>
-          <a class="button secondary" href="mailto:shanchhithsingh@gmail.com">Get in touch</a>
-        </div>
-        <div class="quick-facts" aria-label="Current profile">
-          <span>Research Associate, Stanford GSB</span>
-          <span>Based in India</span>
-        </div>
-      </div>
-      <figure class="portrait">
-        <img src="IMG_8828.JPG" alt="Portrait of Shanchhith Singh Nayak">
-        <figcaption>Researcher working across economics and data science</figcaption>
-      </figure>
+    <section aria-labelledby="selected-work">
+      <h2 id="selected-work">Selected work</h2>
+      <article class="project">
+        <h3>Shrinkflation detection</h3>
+        <p>Product matching for packaged-goods research.</p>
+      </article>
+      <article class="project">
+        <h3>Human vs. AI health coaches</h3>
+        <p>Estimating coaching effects with matched panel data.</p>
+        <a href="https://github.com/Shanchhith/healthifyme-human-vs-ai-coaches" target="_blank" rel="noopener noreferrer">Project ↗</a>
+      </article>
+      <article class="project">
+        <h3>Indian marriage market</h3>
+        <p>Studying preferences with historical classifieds.</p>
+      </article>
     </section>
 
-    <section class="section" id="research">
-      <div class="wrap">
-        <div class="section-heading">
-          <div>
-            <p class="section-label">01 / Research</p>
-            <h2>Questions that guide my work</h2>
-          </div>
-          <p class="section-intro">
-            I work on applied questions in consumer behaviour, markets, and policy, using empirical methods to understand what changes outcomes.
-          </p>
-        </div>
-        <div class="interest-grid">
-          <article class="interest">
-            <h3>Industrial organisation</h3>
-            <p>Demand estimation, market structure, pricing, and how firms and consumers respond to one another.</p>
-          </article>
-          <article class="interest">
-            <h3>Causal inference</h3>
-            <p>Programme evaluation using matching, difference-in-differences, instrumental variables, and experiments.</p>
-          </article>
-          <article class="interest">
-            <h3>Marketing &amp; machine learning</h3>
-            <p>Consumer choice, product information, and practical applications of language models to empirical research.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="work">
-      <div class="wrap">
-        <div class="section-heading">
-          <div>
-            <p class="section-label">02 / Selected work</p>
-            <h2>Research in progress and practice</h2>
-          </div>
-          <p class="section-intro">
-            A selection of projects across consumer markets, causal evaluation, and applied machine learning.
-          </p>
-        </div>
-        <div class="project-list">
-          <article class="project">
-            <div class="project-meta"><span>Stanford GSB</span><span>2025 — present</span></div>
-            <div>
-              <h3>Shrinkflation detection</h3>
-              <p>A GPU-accelerated product-matching pipeline using embeddings and cross-encoder scoring to identify changes across packaged-goods catalogues.</p>
-            </div>
-          </article>
-          <article class="project">
-            <div class="project-meta"><span>Stanford GSB</span><span>2025</span></div>
-            <div>
-              <h3>Human vs. AI health coaches</h3>
-              <p>Propensity-score matching and panel data reconstruction to estimate the effect of human coaching on weight loss.</p>
-            </div>
-            <a class="project-link" href="https://github.com/Shanchhith/healthifyme-human-vs-ai-coaches" target="_blank" rel="noopener noreferrer">Replication package ↗</a>
-          </article>
-          <article class="project">
-            <div class="project-meta"><span>IIM Ahmedabad</span><span>2024 — present</span></div>
-            <div>
-              <h3>Preferences in the Indian marriage market</h3>
-              <p>OCR and language-model classification of matrimonial classifieds, examining changes in preferences across caste, education, and geography.</p>
-            </div>
-          </article>
-          <article class="project">
-            <div class="project-meta"><span>University of Missouri</span><span>2024</span></div>
-            <div>
-              <h3>Debt collection regulation</h3>
-              <p>Difference-in-differences analysis of regulatory limits and their effects on firm-level call frequency and collection outcomes.</p>
-            </div>
-          </article>
-          <article class="project">
-            <div class="project-meta"><span>HBS · University of Missouri</span><span>2024</span></div>
-            <div>
-              <h3>Model diversity and product success</h3>
-              <p>An online experiment studying how racial diversity in product photography affects consumer choice.</p>
-            </div>
-          </article>
-          <article class="project">
-            <div class="project-meta"><span>Independent research</span><span>In progress</span></div>
-            <div>
-              <h3>Language models for demand estimation</h3>
-              <p>Replication and extension work exploring fine-tuning, price estimation, and interpretability for new-goods demand.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="papers">
-      <div class="wrap">
-        <div class="section-heading">
-          <div>
-            <p class="section-label">03 / Writing</p>
-            <h2>Working paper</h2>
-          </div>
-          <p class="section-intro">Current drafts and research notes.</p>
-        </div>
-        <article class="paper">
-          <div>
-            <h3>Revealed preferences in the Indian marriage market, 1950–2010</h3>
-            <p>OCR and language-model classification · Under preparation</p>
-          </div>
-          <a class="project-link" href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="wrap">
-        <div class="section-heading">
-          <div>
-            <p class="section-label">04 / Experience</p>
-            <h2>Research roles</h2>
-          </div>
-          <p class="section-intro">Research appointments spanning consumer behaviour, health systems, and empirical economics.</p>
-        </div>
-        <div class="experience-list">
-          <article class="experience">
-            <div>
-              <h3>Research Associate</h3>
-              <p class="org">Stanford Graduate School of Business · Remote</p>
-              <p>Building consumer research pipelines, estimating demand, and developing reproducible analyses of health and packaged-goods markets.</p>
-            </div>
-            <div class="dates">2025 — present</div>
-          </article>
-          <article class="experience">
-            <div>
-              <h3>Research Associate</h3>
-              <p class="org">IIM Ahmedabad · Centre for Management of Health Services</p>
-              <p>Contributed to empirical health-systems research, policy analytics, survey design, and reproducible research workflows.</p>
-            </div>
-            <div class="dates">2024 — 2025</div>
-          </article>
-        </div>
-        <div class="credentials" aria-label="Education and distinctions">
-          <div class="credential"><strong>M.S. Economics</strong><span>IISER Bhopal · 9.8/10</span></div>
-          <div class="credential"><strong>GATE Economics</strong><span>All-India Rank 124</span></div>
-          <div class="credential"><strong>UGC-NET</strong><span>Economics · 99th percentile</span></div>
-          <div class="credential"><strong>Don Lavoie Fellow</strong><span>Mercatus Center</span></div>
-        </div>
-        <p class="tools"><strong>Methods &amp; tools:</strong> Python, R, Stata, SQL, causal inference, panel data, machine learning, PyTorch, and language models.</p>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="wrap">
-        <div class="contact">
-          <div>
-            <p class="section-label" style="color:#c6d6c9">05 / Contact</p>
-            <h2>Have a research question in mind?</h2>
-            <p>I’m glad to connect about research collaborations, ideas, or work at the intersection of economics and data science.</p>
-            <div class="social-links">
-              <a href="https://github.com/Shanchhith" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a href="https://www.linkedin.com/in/shanchhith" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href="https://scholar.google.com/citations?user=gdhpHUoAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-            </div>
-          </div>
-          <a class="button" href="mailto:shanchhithsingh@gmail.com">Email me <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
+    <footer>© 2026 Shanchhith Singh Nayak</footer>
   </main>
-
-  <footer>
-    <div class="wrap">
-      <span>© 2026 Shanchhith Singh Nayak</span>
-      <span>Quantitative research · India</span>
-    </div>
-  </footer>
 </body>
 </html>
