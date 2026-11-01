@@ -9,13 +9,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Karla:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t})()</script>
 <style>
 :root{--green:#2A3F33;--cream:#EFE6D2;--copper:#B5651D;--ink:#2A1F18;--muted:#7A5E48;--rule:#D4C5A8}
+:root[data-theme=dark]{--green:#A9C4B1;--cream:#1C1712;--copper:#D9944F;--ink:#EFE6D2;--muted:#B5A085;--rule:#3A3026}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--ink);font-family:'Karla',sans-serif;font-size:17px;line-height:1.65}
 a{color:var(--green);text-decoration:underline;text-decoration-color:var(--copper);text-underline-offset:3px}
 a:hover{color:var(--copper)}
+#theme{position:fixed;top:14px;right:16px;background:none;border:1px solid var(--rule);color:var(--muted);border-radius:4px;padding:4px 10px;font:14px 'Karla',sans-serif;cursor:pointer}
+#theme:hover{color:var(--copper);border-color:var(--copper)}
 .page{max-width:720px;margin:0 auto;padding:56px 24px 40px}
 header{display:flex;gap:28px;align-items:center;margin-bottom:28px}
 header img{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:top center;border:1px solid var(--rule);flex:none}
@@ -40,6 +44,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:14px;color:va
 </style>
 </head>
 <body>
+<button id="theme" aria-label="Toggle dark mode"></button>
 <div class="page">
 
 <header>
@@ -160,5 +165,11 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:14px;color:va
 
 <footer>&copy; 2026 Shanchhith Singh Nayak</footer>
 </div>
+<script>
+var b=document.getElementById('theme'),r=document.documentElement;
+function lab(){b.textContent=r.dataset.theme==='dark'?'Light':'Dark'}
+b.onclick=function(){r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';localStorage.setItem('theme',r.dataset.theme);lab()};
+lab();
+</script>
 </body>
 </html>
