@@ -74,6 +74,9 @@ summary{cursor:pointer;color:var(--green);font-family:'Cormorant Garamond',serif
 #gm .grid{display:grid;gap:6px;margin:0 auto 8px;width:min(300px,100%)}
 #gm .grid button{aspect-ratio:1;font:600 26px 'Karla',sans-serif;background:var(--cream);color:var(--ink);border:1px solid var(--rule);border-radius:4px;cursor:pointer;padding:0}
 #gm .t2048 div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font:600 20px 'Karla',sans-serif;background:var(--rule);color:var(--ink);border-radius:4px}
+#gm .ms button{font-size:15px}
+#gm .simon button{aspect-ratio:1;border:0;opacity:.55;cursor:pointer}
+#gm .simon button.lit{opacity:1}
 #gm #gstat{min-height:1.6em;font-size:15px;color:var(--muted)}
 #game{display:block;margin:0 auto 8px;background:var(--cream);border:1px solid var(--rule);max-width:100%;touch-action:none}
 .gbar{text-align:center;font-size:14px;color:var(--muted)}
@@ -104,7 +107,7 @@ summary{cursor:pointer;color:var(--green);font-family:'Cormorant Garamond',serif
 </header>
 
 <nav>
-  <a href="#about">About</a><a href="#education">Education</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#honors">Honors</a><a href="#play">Snake</a><a href="#games">More games</a>
+  <a href="#about">About</a><a href="#education">Education</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#honors">Honors</a><a href="#games">Games</a>
 </nav>
 
 <section id="about">
@@ -207,19 +210,19 @@ summary{cursor:pointer;color:var(--green);font-family:'Cormorant Garamond',serif
 </dl>
 </section>
 
-<details id="play">
-<summary>Take a break</summary>
-<canvas id="game" width="300" height="300"></canvas>
-<div class="gbar"><span id="score">Score 0</span> &middot; arrow keys / swipe &middot; <button id="restart">Start</button></div>
-</details>
-
 <details id="games">
-<summary>More games</summary>
+<summary>Games</summary>
 <div id="gm">
-  <div class="tabs"><button data-g="ttt" class="on">Tic-tac-toe</button><button data-g="mem">Memory</button><button data-g="n2048">2048</button></div>
-  <div id="gboard"></div>
-  <div id="gstat"></div>
-  <button class="gb" id="gnew">New game</button>
+  <div class="tabs"><button data-g="snake" class="on">Snake</button><button data-g="ttt">Tic-tac-toe</button><button data-g="mem">Memory</button><button data-g="n2048">2048</button><button data-g="brk">Breakout</button><button data-g="mine">Minesweeper</button><button data-g="simon">Simon</button></div>
+  <div id="snakebox">
+    <canvas id="game" width="300" height="300"></canvas>
+    <div class="gbar"><span id="score">Score 0</span> &middot; arrow keys / swipe &middot; <button id="restart">Start</button></div>
+  </div>
+  <div id="other" hidden>
+    <div id="gboard"></div>
+    <div id="gstat"></div>
+    <button class="gb" id="gnew">New game</button>
+  </div>
 </div>
 </details>
 
@@ -237,7 +240,7 @@ var r=document.documentElement,sel=document.getElementById('season');
 sel.value=localStorage.getItem('season')||'default';
 sel.onchange=function(){localStorage.setItem('season',sel.value);r.dataset.season=sel.value==='auto'?r.dataset.auto:sel.value;fx()};
 
-/* open the game when linked */
+/* open the game section when linked */
 function op(){var d=document.querySelector('details'+location.hash.replace(/[^#\w]/g,''));if(location.hash&&d&&d.tagName==='DETAILS')d.open=true}
 addEventListener('hashchange',op);op();
 
@@ -269,7 +272,7 @@ document.querySelectorAll('#research h3').forEach(function(h){var u=h.nextElemen
 
 /* more games */
 (function(){
-var box=document.getElementById('gboard'),st=document.getElementById('gstat'),cur='ttt',S={},gm=document.getElementById('games');
+var box=document.getElementById('gboard'),st=document.getElementById('gstat'),cur='snake',S={},gm=document.getElementById('games');
 function grid(n,cls){box.innerHTML='';var d=document.createElement('div');d.className='grid '+(cls||'');d.style.gridTemplateColumns='repeat('+n+',1fr)';box.appendChild(d);return d}
 var L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 function win(b){for(var i=0;i<8;i++){var l=L[i];if(b[l[0]]&&b[l[0]]==b[l[1]]&&b[l[1]]==b[l[2]])return b[l[0]]}return b.indexOf('')<0?'draw':null}
@@ -295,8 +298,54 @@ for(var k=0;k<4;k++){var idx=[0,1,2,3].map(function(j){return dx? (k*4+(dx>0?3-j
 var res=slide(idx.map(function(i){return g[i]}));idx.forEach(function(i,j){g[i]=res[j]})}
 S.g=g;if(g.join()!=old){add()}ndraw();
 if(S.g.indexOf(0)<0){var can=false;for(var i=0;i<16;i++){if((i%4<3&&S.g[i]==S.g[i+1])||(i<12&&S.g[i]==S.g[i+4]))can=true}if(!can)st.textContent='Game over \u00b7 Score '+S.s}}
-var G={ttt:ttt,mem:mem,n2048:n48};
-function start(){S={};G[cur]()}
+function brk(){var cv=document.createElement('canvas');cv.width=cv.height=300;cv.style.cssText='display:block;margin:0 auto 8px;border:1px solid var(--rule);max-width:100%;touch-action:none';box.innerHTML='';box.appendChild(cv);
+var c=cv.getContext('2d'),px=120,bx=150,by=200,vx=2.5,vy=-3,br=[],sc=0,raf,k={},over=false;
+for(var y=0;y<5;y++)for(var x=0;x<8;x++)br.push({x:x*37+3,y:y*16+30,a:1});
+function col(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function kd(e){if(e.key=='ArrowLeft'||e.key=='ArrowRight'){e.preventDefault();k[e.key]=e.type=='keydown'}}
+function mv(e){var t=e.touches?e.touches[0]:e,b=cv.getBoundingClientRect();px=Math.max(0,Math.min(240,(t.clientX-b.left)*300/b.width-30))}
+document.addEventListener('keydown',kd);document.addEventListener('keyup',kd);cv.addEventListener('mousemove',mv);cv.addEventListener('touchmove',mv,{passive:true});
+function tick(){if(k.ArrowLeft)px=Math.max(0,px-5);if(k.ArrowRight)px=Math.min(240,px+5);
+bx+=vx;by+=vy;if(bx<4||bx>296)vx=-vx;if(by<4)vy=-vy;
+if(vy>0&&by>277&&by<291&&bx>px-4&&bx<px+64){vy=-Math.abs(vy);vx=(bx-px-30)/10}
+br.forEach(function(b){if(b.a&&bx>b.x&&bx<b.x+34&&by>b.y&&by<b.y+12){b.a=0;vy=-vy;sc++}});
+if(by>300){over=true;st.textContent='Game over \u00b7 Score '+sc}
+else if(sc==br.length){over=true;st.textContent='You cleared it!'}else st.textContent='Score '+sc+' \u00b7 arrow keys / drag';
+c.fillStyle=col('--cream');c.fillRect(0,0,300,300);c.fillStyle=col('--copper');br.forEach(function(b){if(b.a)c.fillRect(b.x,b.y,34,12)});
+c.fillStyle=col('--green');c.fillRect(px,285,60,8);c.beginPath();c.arc(bx,by,5,0,7);c.fill();
+if(!over)raf=requestAnimationFrame(tick)}
+tick();
+S.stop=function(){cancelAnimationFrame(raf);document.removeEventListener('keydown',kd);document.removeEventListener('keyup',kd)}}
+function mine(){var n=9,M=10,m=[],rv=[],fl=[],first=true,flag=false,done=false;
+for(var i=0;i<81;i++){m[i]=0;rv[i]=0;fl[i]=0}
+function nb(i){var o=[],x=i%n,y=(i/n)|0;for(var dy=-1;dy<2;dy++)for(var dx=-1;dx<2;dx++){var a=x+dx,b=y+dy;if((dx||dy)&&a>=0&&b>=0&&a<n&&b<n)o.push(b*n+a)}return o}
+function cnt(i){return nb(i).filter(function(j){return m[j]}).length}
+function open(i){if(rv[i]||fl[i])return;rv[i]=1;if(!m[i]&&!cnt(i))nb(i).forEach(open)}
+function draw(){var g=grid(n,'ms'),left=M-fl.filter(Boolean).length;
+for(var i=0;i<81;i++)(function(i){var b=document.createElement('button');
+if(rv[i]){b.textContent=m[i]?'\ud83d\udca3':(cnt(i)||'');b.style.opacity=.6}else if(fl[i])b.textContent='\ud83d\udea9';
+b.onclick=function(){hit(i)};b.oncontextmenu=function(e){e.preventDefault();tog(i)};g.appendChild(b)})(i);
+var t=document.createElement('button');t.className='gb';t.textContent=flag?'Flag mode: on':'Flag mode: off';t.onclick=function(){flag=!flag;draw()};box.appendChild(t);
+if(!done)st.textContent='Mines left: '+left+' \u00b7 right-click or flag mode to flag'}
+function tog(i){if(done||rv[i])return;fl[i]=fl[i]?0:1;draw()}
+function hit(i){if(done)return;if(flag)return tog(i);if(fl[i])return;
+if(first){first=false;var c=0;while(c<M){var j=Math.floor(Math.random()*81);if(!m[j]&&j!=i&&nb(i).indexOf(j)<0){m[j]=1;c++}}}
+if(m[i]){done=true;for(var j=0;j<81;j++)if(m[j])rv[j]=1;draw();st.textContent='Boom! Game over';return}
+open(i);if(rv.filter(Boolean).length==81-M){done=true;draw();st.textContent='You cleared the field!';return}draw()}
+draw()}
+function simon(){var cs=['#c0392b','#2e8b57','#2c6fbb','#d4a017'],seq=[],pos=0,lock=true;S.dead=false;
+var g=grid(2,'simon'),bs=cs.map(function(c,i){var b=document.createElement('button');b.style.background=c;b.onclick=function(){press(i)};g.appendChild(b);return b});
+function flash(i){bs[i].classList.add('lit');setTimeout(function(){bs[i].classList.remove('lit')},300)}
+function play(){lock=true;st.textContent='Watch...';seq.forEach(function(v,i){setTimeout(function(){if(!S.dead)flash(v)},600+i*600)});
+setTimeout(function(){if(!S.dead){lock=false;pos=0;st.textContent='Your turn \u00b7 Score '+(seq.length-1)}},600+seq.length*600)}
+function next(){seq.push(Math.floor(Math.random()*4));play()}
+function press(i){if(lock)return;flash(i);if(seq[pos]!=i){lock=true;st.textContent='Game over \u00b7 Score '+(seq.length-1);return}
+if(++pos==seq.length){lock=true;setTimeout(function(){if(!S.dead)next()},700)}}
+S.stop=function(){S.dead=true};next()}
+var G={snake:function(){},ttt:ttt,mem:mem,n2048:n48,brk:brk,mine:mine,simon:simon};
+function start(){if(S.stop)S.stop();S={};if(window.stopSnake&&cur!='snake')window.stopSnake();
+document.getElementById('snakebox').hidden=cur!='snake';document.getElementById('other').hidden=cur=='snake';box.innerHTML='';st.textContent='';G[cur]()}
+gm.addEventListener('toggle',function(){if(!gm.open){if(S.stop)S.stop()}else if(cur=='brk'||cur=='simon')start()});
 document.querySelector('#gm .tabs').onclick=function(e){var g=e.target.dataset.g;if(!g)return;cur=g;[].forEach.call(this.children,function(b){b.classList.toggle('on',b===e.target)});start()};
 document.getElementById('gnew').onclick=start;
 addEventListener('keydown',function(e){if(!gm.open||cur!='n2048')return;var m={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(m){e.preventDefault();nmove(m[0],m[1])}});
@@ -320,7 +369,7 @@ c.fillStyle=col('--copper');c.fillRect(food.x*T+3,food.y*T+3,T-6,T-6);
 c.fillStyle=col('--green');sn.forEach(function(s){c.fillRect(s.x*T+1,s.y*T+1,T-2,T-2)});
 if(over){c.fillStyle=col('--ink');c.font='20px Karla,sans-serif';c.textAlign='center';c.fillText('Game over',150,150)}}
 function turn(x,y){if(x==-dir.x&&y==-dir.y)return;nx={x:x,y:y}}
-var play=document.getElementById('play');
+var play=document.getElementById('games');window.stopSnake=function(){clearInterval(timer);timer=null};
 addEventListener('keydown',function(e){if(!play.open||!timer)return;
 var m={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(m){e.preventDefault();turn(m[0],m[1])}});
 var t0;g.addEventListener('touchstart',function(e){t0=e.touches[0]},{passive:true});
