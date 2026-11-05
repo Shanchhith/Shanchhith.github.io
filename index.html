@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Karla:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <script>(function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t})()</script>
-<script>(function(){var d=new Date(),m=d.getMonth()+1,x=d.getDate(),q=localStorage.getItem('season')||'auto',a;
+<script>(function(){var d=new Date(),m=d.getMonth()+1,x=d.getDate(),q=localStorage.getItem('season')||'default',a;
 if(m==10&&x>=20||m==11&&x<=2)a='halloween';else if(m==12||m<=2)a='winter';else if(m>=3&&m<=5)a='spring';else if(m>=6&&m<=9)a='monsoon';else a='autumn';
 document.documentElement.dataset.season=q==='auto'?a:q;document.documentElement.dataset.auto=a})()</script>
 <style>
@@ -76,7 +76,7 @@ summary{cursor:pointer;color:var(--green);font-family:'Cormorant Garamond',serif
 </head>
 <body>
 <canvas id="fx"></canvas>
-<select id="season" aria-label="Seasonal theme"><option value="auto">Auto</option><option value="default">Classic</option><option value="halloween">Halloween</option><option value="winter">Winter</option><option value="spring">Spring</option><option value="monsoon">Monsoon</option><option value="autumn">Autumn</option></select>
+<select id="season" aria-label="Seasonal theme"><option value="default">Normal</option><option value="auto">Auto (seasonal)</option><option value="halloween">Halloween</option><option value="winter">Winter</option><option value="spring">Spring</option><option value="monsoon">Monsoon</option><option value="autumn">Autumn</option></select>
 <button id="theme" aria-label="Toggle dark mode"></button>
 <div class="page">
 
@@ -96,7 +96,7 @@ summary{cursor:pointer;color:var(--green);font-family:'Cormorant Garamond',serif
 </header>
 
 <nav>
-  <a href="#about">About</a><a href="#education">Education</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#honors">Honors</a>
+  <a href="#about">About</a><a href="#education">Education</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#honors">Honors</a><a href="#play">Snake game</a>
 </nav>
 
 <section id="about">
@@ -216,8 +216,12 @@ lab();
 <script>
 (function(){
 var r=document.documentElement,sel=document.getElementById('season');
-sel.value=localStorage.getItem('season')||'auto';
+sel.value=localStorage.getItem('season')||'default';
 sel.onchange=function(){localStorage.setItem('season',sel.value);r.dataset.season=sel.value==='auto'?r.dataset.auto:sel.value;fx()};
+
+/* open the game when linked */
+function op(){if(location.hash==='#play')document.getElementById('play').open=true}
+addEventListener('hashchange',op);op();
 
 /* seasonal particles */
 var cv=document.getElementById('fx'),cx=cv.getContext('2d'),P=[],raf,still=matchMedia('(prefers-reduced-motion: reduce)').matches;
