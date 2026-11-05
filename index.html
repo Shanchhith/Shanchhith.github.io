@@ -67,6 +67,14 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:14px;color:va
 #chart i{display:block;width:34px;background:var(--copper);opacity:.85;border-radius:2px 2px 0 0}
 details{margin-bottom:12px}
 summary{cursor:pointer;color:var(--green);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:14px}
+#gm{text-align:center}
+#gm .tabs{margin-bottom:10px}
+#gm .tabs button,#gm .gb{background:none;border:1px solid var(--rule);color:var(--green);border-radius:4px;padding:2px 12px;margin:0 4px 6px;font:inherit;cursor:pointer}
+#gm .tabs button.on{background:var(--green);color:var(--cream)}
+#gm .grid{display:grid;gap:6px;margin:0 auto 8px;width:min(300px,100%)}
+#gm .grid button{aspect-ratio:1;font:600 26px 'Karla',sans-serif;background:var(--cream);color:var(--ink);border:1px solid var(--rule);border-radius:4px;cursor:pointer;padding:0}
+#gm .t2048 div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font:600 20px 'Karla',sans-serif;background:var(--rule);color:var(--ink);border-radius:4px}
+#gm #gstat{min-height:1.6em;font-size:15px;color:var(--muted)}
 #game{display:block;margin:0 auto 8px;background:var(--cream);border:1px solid var(--rule);max-width:100%;touch-action:none}
 .gbar{text-align:center;font-size:14px;color:var(--muted)}
 .gbar button{background:none;border:1px solid var(--rule);color:var(--green);border-radius:4px;padding:2px 12px;margin:0 4px;font:inherit;cursor:pointer}
@@ -96,7 +104,7 @@ summary{cursor:pointer;color:var(--green);font-family:'Cormorant Garamond',serif
 </header>
 
 <nav>
-  <a href="#about">About</a><a href="#education">Education</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#honors">Honors</a><a href="#play">Snake game</a>
+  <a href="#about">About</a><a href="#education">Education</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#honors">Honors</a><a href="#play">Snake</a><a href="#games">More games</a>
 </nav>
 
 <section id="about">
@@ -205,6 +213,16 @@ summary{cursor:pointer;color:var(--green);font-family:'Cormorant Garamond',serif
 <div class="gbar"><span id="score">Score 0</span> &middot; arrow keys / swipe &middot; <button id="restart">Start</button></div>
 </details>
 
+<details id="games">
+<summary>More games</summary>
+<div id="gm">
+  <div class="tabs"><button data-g="ttt" class="on">Tic-tac-toe</button><button data-g="mem">Memory</button><button data-g="n2048">2048</button></div>
+  <div id="gboard"></div>
+  <div id="gstat"></div>
+  <button class="gb" id="gnew">New game</button>
+</div>
+</details>
+
 <footer>&copy; 2026 Shanchhith Singh Nayak</footer>
 </div>
 <script>
@@ -220,7 +238,7 @@ sel.value=localStorage.getItem('season')||'default';
 sel.onchange=function(){localStorage.setItem('season',sel.value);r.dataset.season=sel.value==='auto'?r.dataset.auto:sel.value;fx()};
 
 /* open the game when linked */
-function op(){if(location.hash==='#play')document.getElementById('play').open=true}
+function op(){var d=document.querySelector('details'+location.hash.replace(/[^#\w]/g,''));if(location.hash&&d&&d.tagName==='DETAILS')d.open=true}
 addEventListener('hashchange',op);op();
 
 /* seasonal particles */
@@ -248,6 +266,45 @@ chips.onclick=function(e){var f=e.target.dataset.f;if(!f)return;
 [].forEach.call(chips.children,function(b){b.classList.toggle('on',b===e.target)});
 items.forEach(function(li){li.style.display=(f==='all'||li.dataset.tags.split(' ').indexOf(f)>-1)?'':'none'});
 document.querySelectorAll('#research h3').forEach(function(h){var u=h.nextElementSibling;h.style.display=[].some.call(u.children,function(l){return l.style.display!=='none'})?'':'none'})};
+
+/* more games */
+(function(){
+var box=document.getElementById('gboard'),st=document.getElementById('gstat'),cur='ttt',S={},gm=document.getElementById('games');
+function grid(n,cls){box.innerHTML='';var d=document.createElement('div');d.className='grid '+(cls||'');d.style.gridTemplateColumns='repeat('+n+',1fr)';box.appendChild(d);return d}
+var L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function win(b){for(var i=0;i<8;i++){var l=L[i];if(b[l[0]]&&b[l[0]]==b[l[1]]&&b[l[1]]==b[l[2]])return b[l[0]]}return b.indexOf('')<0?'draw':null}
+function ttt(){S.b=['','','','','','','','',''];S.over=false;st.textContent='You are X';tdraw()}
+function tdraw(){var g=grid(3);S.b.forEach(function(v,i){var k=document.createElement('button');k.textContent=v;k.onclick=function(){tmove(i)};g.appendChild(k)})}
+function pick(m){for(var i=0;i<8;i++){var l=L[i],v=l.map(function(j){return S.b[j]});if(v.filter(function(x){return x==m}).length==2&&v.indexOf('')>-1)return l[v.indexOf('')]}return -1}
+function tmove(i){if(S.over||S.b[i])return;S.b[i]='X';var w=win(S.b);
+if(!w){var o=pick('O');if(o<0)o=pick('X');if(o<0&&!S.b[4])o=4;if(o<0){var e=S.b.map(function(v,j){return v?-1:j}).filter(function(j){return j>=0});o=e[Math.floor(Math.random()*e.length)]}S.b[o]='O';w=win(S.b)}
+if(w){S.over=true;st.textContent=w=='draw'?'Draw':w=='X'?'You win!':'Computer wins'}tdraw()}
+var E=['\ud83c\udf38','\ud83c\udf42','\u2744\ufe0f','\ud83d\udca7','\ud83c\udf83','\ud83c\udf3f','\u2b50','\ud83c\udf19'];
+function mem(){S.c=E.concat(E).sort(function(){return Math.random()-.5});S.o=[];S.m=[];S.n=0;S.lock=false;st.textContent='Moves: 0';mdraw()}
+function mdraw(){var g=grid(4);S.c.forEach(function(v,i){var k=document.createElement('button'),sh=S.o.indexOf(i)>-1||S.m.indexOf(i)>-1;k.textContent=sh?v:'?';k.onclick=function(){mflip(i)};g.appendChild(k)})}
+function mflip(i){if(S.lock||S.o.indexOf(i)>-1||S.m.indexOf(i)>-1)return;S.o.push(i);mdraw();
+if(S.o.length==2){S.n++;st.textContent='Moves: '+S.n;var a=S.o[0],b=S.o[1];
+if(S.c[a]==S.c[b]){S.m.push(a,b);S.o=[];mdraw();if(S.m.length==16)st.textContent='Done in '+S.n+' moves!'}
+else{S.lock=true;setTimeout(function(){S.o=[];S.lock=false;mdraw()},700)}}}
+function n48(){S.g=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];S.s=0;add();add();ndraw()}
+function add(){var e=[];S.g.forEach(function(v,i){if(!v)e.push(i)});if(e.length)S.g[e[Math.floor(Math.random()*e.length)]]=Math.random()<.9?2:4}
+function ndraw(){var g=grid(4,'t2048');S.g.forEach(function(v){var d=document.createElement('div');d.textContent=v||'';g.appendChild(d)});st.textContent='Score '+S.s+' \u00b7 arrow keys / swipe'}
+function slide(row){var a=row.filter(Boolean),o=[];for(var i=0;i<a.length;i++){if(a[i]==a[i+1]){o.push(a[i]*2);S.s+=a[i]*2;i++}else o.push(a[i])}while(o.length<4)o.push(0);return o}
+function nmove(dx,dy){var old=S.g.join(),g=S.g.slice();
+for(var k=0;k<4;k++){var idx=[0,1,2,3].map(function(j){return dx? (k*4+(dx>0?3-j:j)) : ((dy>0?3-j:j)*4+k)});
+var res=slide(idx.map(function(i){return g[i]}));idx.forEach(function(i,j){g[i]=res[j]})}
+S.g=g;if(g.join()!=old){add()}ndraw();
+if(S.g.indexOf(0)<0){var can=false;for(var i=0;i<16;i++){if((i%4<3&&S.g[i]==S.g[i+1])||(i<12&&S.g[i]==S.g[i+4]))can=true}if(!can)st.textContent='Game over \u00b7 Score '+S.s}}
+var G={ttt:ttt,mem:mem,n2048:n48};
+function start(){S={};G[cur]()}
+document.querySelector('#gm .tabs').onclick=function(e){var g=e.target.dataset.g;if(!g)return;cur=g;[].forEach.call(this.children,function(b){b.classList.toggle('on',b===e.target)});start()};
+document.getElementById('gnew').onclick=start;
+addEventListener('keydown',function(e){if(!gm.open||cur!='n2048')return;var m={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(m){e.preventDefault();nmove(m[0],m[1])}});
+var q;box.addEventListener('touchstart',function(e){q=e.touches[0]},{passive:true});
+box.addEventListener('touchend',function(e){if(cur!='n2048')return;var t=e.changedTouches[0],dx=t.clientX-q.clientX,dy=t.clientY-q.clientY;if(Math.max(Math.abs(dx),Math.abs(dy))<20)return;
+if(Math.abs(dx)>Math.abs(dy))nmove(dx>0?1:-1,0);else nmove(0,dy>0?1:-1)});
+start();
+})();
 
 /* snake */
 var g=document.getElementById('game'),c=g.getContext('2d'),N=15,T=20,sn,dir,nx,food,sc,timer,best=+localStorage.getItem('best')||0;
